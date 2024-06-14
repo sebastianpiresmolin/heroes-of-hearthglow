@@ -19,9 +19,12 @@ export default function Landing() {
                         alt="Landing page"
                         className="w-1/3"
                     />
-                    <a href="https://www.youtube.com" className="text-4xl font-bold text-gray-500 mt-20 bg-blue-200 p-6 rounded-3xl">
+                    <a href="https://www.youtube.com" className="text-4xl font-bold text-gray-500 mt-10 bg-blue-200 p-6 rounded-3xl">
                         WATCH TRAILER
                     </a>
+                    <h3 className="mt-20 text-2xl font-bold text-gray-500">
+                        ---- Scroll To Explore ----
+                    </h3>
                 </div>
             </div>
         </section>
