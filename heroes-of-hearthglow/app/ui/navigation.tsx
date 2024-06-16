@@ -76,8 +76,7 @@ export default function Navigation() {
             alt="Sign Up"
             style={{
               borderRadius: '10px',
-              width: '80%',
-              height: '80%',
+              width: '60%',
               marginTop: '10px',
               position: 'relative',
             }}
