@@ -20,35 +20,69 @@ export default function Navigation() {
   const menuItems = ['NEWS', 'MEDIA', 'THE TEAM', 'DISCORD'];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="fixed bg-transparent">
+    <Navbar
+      onMenuOpenChange={setIsMenuOpen}
+      className="fixed bg-transparent w-[100vw]"
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           className="sm:hidden"
         />
-      </NavbarContent>
-
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Customers
+          <Link
+            color="foreground"
+            href="#"
+            className="hidden sm:block font-bold"
+          >
+            NEWS
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
+          <Link
+            color="foreground"
+            href="#"
+            className="hidden sm:block font-bold"
+          >
+            MEDIA
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link
+            color="foreground"
+            href="#"
+            className="hidden sm:block font-bold"
+          >
+            THE TEAM
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link
+            color="foreground"
+            href="#"
+            className="hidden sm:block font-bold"
+          >
+            DISCORD
           </Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
+        <Link href="#" className="flex-row-reverse">
+          <Image
+            className="hidden sm:block"
+            width={512}
+            height={155}
+            src="/steam_logo.png"
+            alt="Sign Up"
+            style={{
+              borderRadius: '10px',
+              width: '80%',
+              height: '80%',
+              marginTop: '10px',
+              position: 'relative',
+            }}
+          />
+        </Link>
       </NavbarContent>
       <NavbarMenu>
         {menuItems.map((item) => (
