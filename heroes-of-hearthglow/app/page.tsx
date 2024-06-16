@@ -1,9 +1,11 @@
-import Landing from "./ui/landing"
+import Landing from './ui/landing';
+import Navigation from './ui/navigation';
 
 export default function Home() {
   return (
-      <div>
-        <Landing />
-      </div>
+    <div>
+      <Navigation />
+      <Landing />
+    </div>
   );
 }
