@@ -54,7 +54,7 @@ export default function Navigation() {
         {menuItems.map((item) => (
           <NavbarMenuItem key={`${item}`}>
             <Link
-              className="w-full text-blue-400 "
+              className="w-full text-black "
               href={`${item.toLowerCase()}`}
               size="lg"
             >

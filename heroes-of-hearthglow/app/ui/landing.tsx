@@ -25,7 +25,7 @@ export default function Landing() {
           >
             WATCH TRAILER
           </a>
-          <h3 className="mb-10 mt-20 text-lg font-bold text-gray-500">
+          <h3 className="mb-10 mt-20 text-xl font-bold text-gray-500">
             ---- Scroll To Explore ----
           </h3>
         </div>
