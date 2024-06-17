@@ -16,7 +16,7 @@ export default function Wishlist() {
           Wishlist Now
         </h2>
         <Image
-          className="w-1/4 m-5 rounded-lg"
+          className="w-1/4 m-5 rounded-lg max-w-[165px]"
           width={512}
           height={155}
           src="/steam_logo.png"
