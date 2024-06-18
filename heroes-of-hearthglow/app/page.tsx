@@ -9,7 +9,6 @@ export default function Home() {
     <div>
       <Navigation />
       <Landing />
-      <Wishlist />
       <Hero />
       <Youtube />
       <Wishlist />
