@@ -14,6 +14,8 @@ import {
   Button,
 } from '@nextui-org/react';
 
+
+
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -32,8 +34,8 @@ export default function Navigation() {
         <NavbarItem>
           <Link
             color="foreground"
-            href="#"
-            className="hidden sm:block font-bold"
+            href="#news"
+            className="hidden sm:block font-bold scroll-smooth"
           >
             NEWS
           </Link>
