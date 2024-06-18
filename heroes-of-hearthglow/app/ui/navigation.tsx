@@ -16,7 +16,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [key, setKey] = useState(0);
 
-  const menuItems = ['NEWS', 'MEDIA', 'THE TEAM', 'DISCORD'];
+  const menuItems = ['NEWS', 'THE TEAM', 'DISCORD'];
 
   const restartComponent = () => {
     setKey((prevKey: number) => prevKey + 1); // Step 2: Update the key
@@ -40,15 +40,6 @@ export default function Navigation() {
             className="hidden sm:block font-bold ml-5"
           >
             NEWS
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link
-            color="foreground"
-            href="/#news"
-            className="hidden sm:block font-bold"
-          >
-            MEDIA
           </Link>
         </NavbarItem>
         <NavbarItem>
