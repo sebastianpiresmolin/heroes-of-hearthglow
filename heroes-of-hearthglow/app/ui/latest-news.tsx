@@ -29,13 +29,13 @@ export default async function LatestNews() {
         <h2 className="bg-black bg-opacity-10 pt-5 pb-5 font-bold text-xl text-center">
           {news[0].title}
         </h2>
-        <p className="text-justify whitespace-pre-wrap bg-black bg-opacity-10 pr-5 pl-5 rounded-b-lg">
+        <p className="text-justify whitespace-pre-wrap bg-black bg-opacity-10 pr-5 pl-5 pb-5 rounded-b-lg">
           {news[0].description}
         </p>
         <div className="flex justify-center p-5">
           <a
             href="#"
-            className="mb-10 text-xl md:text-2xl lg:text-4xl font-bold text-gray-500 bg-blue-200 p-4 md:p-6 rounded-2xl hover:scale-95"
+            className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-500 bg-blue-200 p-4 md:p-6 rounded-2xl hover:scale-95"
           >
             SHOW MORE
           </a>
