@@ -4,7 +4,7 @@ import Image from 'next/image';
 export default function Wishlist() {
   return (
     <div className="w-full h-[100px] bg-gray-400 flex justify-center items-center">
-      <div className="flex justify-center items-center max-w-[1050px]">
+      <div className="flex justify-center items-center max-w-[1050px] overflow-hidden">
         <Image
           width={244}
           height={5}

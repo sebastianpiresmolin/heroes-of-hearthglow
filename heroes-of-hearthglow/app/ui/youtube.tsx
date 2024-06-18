@@ -4,8 +4,8 @@ export default function Youtube() {
       <iframe
         src="https://www.youtube.com/embed/keL7fnIPXlE"
         allowFullScreen
-        width={800}
-        height={400}
+        width={853}
+        height={505}
         className="rounded-lg shadow-lg max-w-[1050px]"
       />
     </div>
