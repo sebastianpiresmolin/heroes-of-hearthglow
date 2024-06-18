@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { SlArrowDownCircle } from 'react-icons/sl';
 
 export default function Landing() {
   return (
@@ -30,9 +31,9 @@ export default function Landing() {
           >
             WATCH TRAILER
           </a>
-          <h3 className="mb-10 mt-20 text-xl font-bold text-gray-500">
-            ---- Scroll To Explore ----
-          </h3>
+          <div className="w-10 h-10 mt-32 mb-12 ">
+            <SlArrowDownCircle className="w-full h-full text-gray-500" />
+          </div>
         </div>
       </div>
     </section>
