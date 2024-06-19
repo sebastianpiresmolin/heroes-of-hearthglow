@@ -26,10 +26,10 @@ export default async function LatestNews() {
             {news[0].time}
           </p>
         </div>
-        <h2 className="bg-black bg-opacity-10 pt-5 pb-5 font-bold text-xl text-center">
+        <h2 className="bg-slate-300 pt-5 pb-5 font-bold text-xl text-center">
           {news[0].title}
         </h2>
-        <p className="text-justify whitespace-pre-wrap bg-black bg-opacity-10 pr-5 pl-5 pb-5 rounded-b-lg">
+        <p className="text-justify whitespace-pre-wrap bg-slate-300 pr-5 pl-5 pb-5 rounded-b-lg">
           {news[0].description}
         </p>
         <div className="flex justify-center p-5">
