@@ -17,6 +17,7 @@ export default function Home() {
       <LatestNews />
       <Wishlist />
       <Team />
+      <Wishlist />
     </div>
   );
 }
