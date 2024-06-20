@@ -11,7 +11,10 @@ import {
 
 export default function Team() {
   return (
-    <section className="flex flex-col items-center justify-center bg-gray-400 w-full">
+    <section
+      className="flex flex-col items-center justify-center bg-gray-400 w-full"
+      id="team"
+    >
       <h1 className="text-center lg:mb-5 p-5 text-4xl font-bold ">THE TEAM</h1>
       <div
         className="max-w-[1050px] flex flex-col h-fit min-h-[500px] bg-cover bg-center items-center justify-center w-[90vw] shadow-[inset_0px_0px_10px_10px_#9ca3af]"

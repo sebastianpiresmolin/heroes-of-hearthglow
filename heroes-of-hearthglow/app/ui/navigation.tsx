@@ -45,7 +45,7 @@ export default function Navigation() {
         <NavbarItem>
           <Link
             color="foreground"
-            href="#"
+            href="#team"
             className="hidden sm:block font-bold"
           >
             THE TEAM
