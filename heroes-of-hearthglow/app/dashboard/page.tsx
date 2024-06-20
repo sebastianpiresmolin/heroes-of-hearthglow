@@ -13,7 +13,7 @@ export default function Dashboard() {
   const logout = async (event: any) => {
     event.preventDefault();
     try {
-      await axios.get('/api/users/logout');
+      await axios.get('/api/auth/logout');
       setLoggedIn(false);
       router.push('/login');
     } catch (error) {
