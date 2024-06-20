@@ -117,7 +117,7 @@ export default function Carousel() {
           </div>
         )}
         <div
-          className=" max-w-[1050px] flex-col m-auto mt-10 h-fit bg-cover bg-center justify-center w-[90vw] shadow-[inset_0px_0px_10px_10px_#9ca3af]"
+          className=" max-w-[1050px] flex-col m-auto h-fit bg-cover bg-center justify-center w-[90vw] shadow-[inset_0px_0px_10px_10px_#9ca3af]"
           style={{
             backgroundImage: "url('/hero.jpg')",
           }}

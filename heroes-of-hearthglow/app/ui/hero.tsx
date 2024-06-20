@@ -22,9 +22,6 @@ export default function Hero() {
           </p>
         </div>
       </div>
-      <h2 className="w-full text-center bg-gray-400 pt-10 font-bold text-3xl">
-        Swipe To Explore
-      </h2>
     </section>
   );
 }
