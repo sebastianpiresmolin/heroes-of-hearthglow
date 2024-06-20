@@ -1,5 +1,6 @@
 import './globals.css';
 import { roboto } from '@/app/ui/fonts';
+import { AuthProvider } from '@/app/contexts/authContext';
 
 export default function RootLayout({
   children,
@@ -7,8 +8,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${roboto.className} antialiased`}>{children}</body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body className={`${roboto.className} antialiased`}>{children}</body>
+      </html>
+    </AuthProvider>
   );
 }
