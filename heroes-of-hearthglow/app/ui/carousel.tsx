@@ -128,7 +128,7 @@ export default function Carousel() {
           <p className="max-w-[500px] pb-20 text-xl w-[80vw] m-auto font-semibold text-white drop-shadow-[0_1px_2px_rgba(0,0,0,1)] text-shadow-xl text-justify">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
             sed arcu nec velit congue ultrices non nec massa. Donec eu cursus
-            leo. Phasellus ornare consequat euismod. Curabitur sed arcu nec
+            leo. Phasellus ornare conasequat euismod. Curabitur sed arcu nec
             velit congue ultrices non nec massa. Donec eu cursus leo. Phasellus
             ornare consequat euismod.
           </p>

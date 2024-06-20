@@ -23,15 +23,15 @@ describe('getLatestNews', () => {
       id: 1,
       title: 'First News',
       time: new Date(),
-      image: 'https://example.com/first-news.jpg', // Example image URL
-      description: 'This is the first news item', // Example description
+      image: 'https://example.com/first-news.jpg',
+      description: 'This is the first news item',
     });
     await News.create({
       id: 2,
       title: 'Latest News',
       time: new Date(),
-      image: 'https://example.com/latest-news.jpg', // Example image URL
-      description: 'This is the latest news item', // Example description
+      image: 'https://example.com/latest-news.jpg',
+      description: 'This is the latest news item',
     });
 
     const latestNews = await getLatestNews();
