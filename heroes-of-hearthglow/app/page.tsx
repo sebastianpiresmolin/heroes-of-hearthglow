@@ -5,6 +5,7 @@ import Hero from './ui/hero';
 import LatestNews from './ui/latest-news';
 import Carousel from './ui/carousel';
 import Team from './ui/team';
+import Footer from './ui/footer';
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Wishlist />
       <Team />
       <Wishlist />
+      <Footer />
     </div>
   );
 }

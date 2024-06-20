@@ -11,7 +11,10 @@ import {
 
 export default function Team() {
   return (
-    <section className="flex flex-col items-center justify-center bg-gray-400 w-full">
+    <section
+      className="flex flex-col items-center justify-center bg-gray-400 w-full"
+      id="team"
+    >
       <h1 className="text-center lg:mb-5 p-5 text-4xl font-bold ">THE TEAM</h1>
       <div
         className="max-w-[1050px] flex flex-col h-fit min-h-[500px] bg-cover bg-center items-center justify-center w-[90vw] shadow-[inset_0px_0px_10px_10px_#9ca3af]"
@@ -39,7 +42,7 @@ export default function Team() {
               <div className="flex flex-col">
                 <p className="text-md">Alan Ballan</p>
                 <p className="text-small text-default-500">
-                  Programmer & Master procastinator
+                  Programmer & Master procrastinator
                 </p>
               </div>
             </CardHeader>
@@ -55,7 +58,7 @@ export default function Team() {
             <CardHeader className="flex justify-end gap-3">
               <div className="flex flex-col">
                 <p className="text-md text-right">Alan Ballan</p>
-                <p className="text-small  text-default-500">
+                <p className="text-small  text-default-500 text-right">
                   Programmer & Master procrastinator
                 </p>
               </div>
