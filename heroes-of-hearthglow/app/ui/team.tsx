@@ -39,7 +39,7 @@ export default function Team() {
               <div className="flex flex-col">
                 <p className="text-md">Alan Ballan</p>
                 <p className="text-small text-default-500">
-                  Programmer & Master procastinator
+                  Programmer & Master procrastinator
                 </p>
               </div>
             </CardHeader>
@@ -55,7 +55,7 @@ export default function Team() {
             <CardHeader className="flex justify-end gap-3">
               <div className="flex flex-col">
                 <p className="text-md text-right">Alan Ballan</p>
-                <p className="text-small  text-default-500">
+                <p className="text-small  text-default-500 text-right">
                   Programmer & Master procrastinator
                 </p>
               </div>
