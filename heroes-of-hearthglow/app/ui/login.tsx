@@ -52,9 +52,9 @@ export default function Login() {
   }, [onLogin]);
 
   return (
-    <main className="max-w-full w-screen min-h-screen">
+    <main className="max-w-full w-screen min-h-screen bg-zinc-800 ">
       <div className="flex lg:hidden justify-center items-center h-[100vh]">
-        <div className="flex-col justify-center items-center font-semibold h-fit w-fit m-auto p-10 shadow-xl outline outline-1 outline-slate-300 rounded-lg bg-white ">
+        <div className="max-w-[350px] md:max-w-none flex-col justify-center items-center text-trueGray-50 text-xl font-regular h-fit w-fit m-auto p-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 outline-solid rounded-lg bg-neutral-900 ">
           <h2>Please use a desktop screen to access the dashboard</h2>
         </div>
       </div>
@@ -99,13 +99,6 @@ export default function Login() {
           >
             Login
           </button>
-          <Link
-            className="bg-transparent hover:bg-red-900 hover:text-white text-black font-bold py-2 px-4 rounded 
-            m-1 w-[200px] text-center border-2 border-red-900 2xl:w-[300px] 2xl:h-[50px]"
-            href="/signup"
-          >
-            Sign Up
-          </Link>
         </div>
       </div>
     </main>
