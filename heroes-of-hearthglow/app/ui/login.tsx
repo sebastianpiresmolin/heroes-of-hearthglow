@@ -20,7 +20,7 @@ export default function login() {
     });
 
     if (response.ok) {
-      router.push('/profile');
+      router.push('/dashboard');
     } else {
       // Handle errors
     }

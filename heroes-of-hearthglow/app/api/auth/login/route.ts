@@ -36,6 +36,8 @@ export async function POST(request: NextRequest) {
       expiresIn: '1d',
     });
 
+    console.log('Token generated:', token);
+
     const response = NextResponse.json({
       message: 'Login successful',
       success: true,
