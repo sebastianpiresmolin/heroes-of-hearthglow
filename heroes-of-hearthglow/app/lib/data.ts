@@ -1,9 +1,13 @@
 import { connect } from './dbconnect';
 import mongoose, { InferSchemaType, Model } from 'mongoose';
 import { NewsSchema } from './schemas';
+import { UserSchema } from './schemas';
 
 export const News: Model<InferSchemaType<typeof NewsSchema>> =
   mongoose.models.News || mongoose.model('News', NewsSchema);
+
+export const User: Model<InferSchemaType<typeof UserSchema>> =
+  mongoose.models.User || mongoose.model('User', UserSchema);
 
 export async function getLatestNews() {
   // Check if already connected (readyState 1)
