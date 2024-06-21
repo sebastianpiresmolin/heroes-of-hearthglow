@@ -23,7 +23,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <a onClick={logout}>'logga ut'</a>
+      <a onClick={logout}>logga ut</a>
     </div>
   );
 }
