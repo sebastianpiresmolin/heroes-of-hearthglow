@@ -74,7 +74,7 @@ export default function Login() {
             Enter your username and password below to login
           </p>
           <input
-            className="p-2 my-2 text-trueGray-50 focus:outline-trueGray-50 rounded-md 2xl:w-[300px] 2xl:h-[50px]
+            className="p-2 my-2 text-trueGray-50 focus:outline-trueGray-50 outline-1 rounded-md 2xl:w-[300px] 2xl:h-[50px]
             bg-zinc-800"
             id="username"
             type="text"
