@@ -22,7 +22,10 @@ export default function DashboardHome() {
   }, []);
 
   return (
-    <div className="flex">
+    <div className="flex-col">
+      <a className="absolute top-3 text-zinc-500" href="/dashboard">
+        Dashboard
+      </a>
       <div className="flex-col w-3/5 h-full">
         <div className="flex gap-10">
           <div className="bg-neutral-900 leading-10 w-full p-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
