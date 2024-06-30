@@ -22,9 +22,9 @@ export default function DashboardHome() {
   }, []);
 
   return (
-    <div className="flex-col">
+    <div className="flex">
       <a className="absolute top-3 text-zinc-500" href="/dashboard">
-        Dashboard
+        Home
       </a>
       <div className="flex-col w-3/5 h-full">
         <div className="flex gap-10">
@@ -71,7 +71,9 @@ export default function DashboardHome() {
           </div>
         </div>
       </div>
-      <div></div>
+      <div className="bg-neutral-900 flec-col p-10 ml-10 w-2/5 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
+        <div></div>
+      </div>
     </div>
   );
 }
