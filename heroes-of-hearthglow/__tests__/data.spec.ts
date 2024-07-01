@@ -3,6 +3,8 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import { News } from '../app/lib/data';
 
+//getLatestNews
+
 describe('getLatestNews', () => {
   let mongoServer: MongoMemoryServer;
 
@@ -28,6 +30,27 @@ describe('getLatestNews', () => {
     });
     await News.create({
       id: 2,
+      title: 'Latest News',
+      time: new Date(),
+      image: 'https://example.com/latest-news.jpg',
+      description: 'This is not the latest news item',
+    });
+    await News.create({
+      id: 3,
+      title: 'Latest News',
+      time: new Date(),
+      image: 'https://example.com/latest-news.jpg',
+      description: 'This is not the latest news item',
+    });
+    await News.create({
+      id: 4,
+      title: 'Latest News',
+      time: new Date(),
+      image: 'https://example.com/latest-news.jpg',
+      description: 'This is not the latest news item',
+    });
+    await News.create({
+      id: 5,
       title: 'Latest News',
       time: new Date(),
       image: 'https://example.com/latest-news.jpg',
