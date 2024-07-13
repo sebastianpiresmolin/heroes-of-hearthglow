@@ -1,3 +1,8 @@
+// Hash a password using bcryptjs
+// Usage: node app/lib/hashpassword.js <password>
+// Ive written this program to create hashed password ready to be manually inserted into the database.
+// because there is no registration page to hash the password for the user.
+
 const bcryptjs = require('bcryptjs');
 
 const password = process.argv[2]; // Get password from command line argument

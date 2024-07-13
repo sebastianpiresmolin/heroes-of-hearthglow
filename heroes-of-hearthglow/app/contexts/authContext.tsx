@@ -4,10 +4,11 @@ import Cookies from 'js-cookie';
 
 interface IAuthContext {
   isLoggedIn: boolean;
-  setLoggedIn: (value: boolean) => void;
+  setLoggedIn: (value: boolean) => void; // Setter function
 }
 
 const AuthContext = createContext<IAuthContext>({
+  // Create context with default value
   isLoggedIn: false,
   setLoggedIn: () => {},
 });
@@ -15,6 +16,7 @@ const AuthContext = createContext<IAuthContext>({
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  // Provider component
   children,
 }) => {
   const [isLoggedIn, setLoggedIn] = useState(() => {
@@ -22,6 +24,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   });
 
   useEffect(() => {
+    // Update cookie when isLoggedIn changes
     if (isLoggedIn) {
       Cookies.set('isLoggedIn', 'true');
     } else {
@@ -30,6 +33,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [isLoggedIn]);
 
   return (
+    // Provide value to children
     <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>
       {children}
     </AuthContext.Provider>

@@ -1,5 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
-
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
   try {
@@ -7,7 +6,7 @@ export async function GET(request: NextRequest) {
       message: 'Logout successful',
       success: true,
     });
-    response.cookies.set('token', '', { httpOnly: true, expires: new Date(0) });
+    response.cookies.set('token', '', { httpOnly: true, expires: new Date(0) }); // Clear token cookie effectively logging out
 
     return response;
   } catch (error: any) {

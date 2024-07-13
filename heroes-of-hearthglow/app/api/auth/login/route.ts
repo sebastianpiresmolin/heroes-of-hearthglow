@@ -25,15 +25,15 @@ export async function POST(request: NextRequest) {
     }
 
     console.log(`User found: ${user.username}`);
-    const validPassword = await bcryptjs.compare(password, user.password);
+    const validPassword = await bcryptjs.compare(password, user.password); // Compare hashed password
     if (!validPassword) {
       console.log('Invalid password');
       return NextResponse.json({ error: 'Invalid password' }, { status: 400 });
     }
 
-    const tokenData = { id: user._id, username: user.username };
+    const tokenData = { id: user._id, username: user.username }; // Token payload
     const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {
-      expiresIn: '1d',
+      expiresIn: '1d', // Token expires in 1 day
     });
 
     console.log('Token generated:', token);
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
       message: 'Login successful',
       success: true,
     });
-    response.cookies.set('token', token, { httpOnly: true });
+    response.cookies.set('token', token, { httpOnly: true }); // Set token in cookie
 
     return response;
   } catch (error: any) {
