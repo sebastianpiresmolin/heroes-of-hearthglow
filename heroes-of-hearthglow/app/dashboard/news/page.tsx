@@ -1,8 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
-import axios from 'axios';
+import {
+  PencilIcon,
+  TrashIcon,
+  ArrowRightIcon,
+  ArrowLeftIcon,
+} from '@heroicons/react/24/outline';
 
 export default function DashboardNews() {
   interface NewsItem {
@@ -14,22 +18,32 @@ export default function DashboardNews() {
 
   const [news, setNews] = useState<NewsItem[]>([]);
   const [activeNews, setActiveNews] = useState<NewsItem>(news[0]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    async function fetchNews() {
-      const response = await fetch('/api/news/allnews');
+    async function fetchNews(page: number) {
+      const response = await fetch(`/api/news/allnews?page=${page}`);
       const data = await response.json();
       setNews(data);
+      if (data.length > 0) {
+        setActiveNews(data[0]);
+      } else {
+        setActiveNews(null);
+      }
     }
 
-    fetchNews();
-  }, []);
-
+    fetchNews(currentPage); // Use currentPage state when fetching news
+  }, [currentPage]); // Depend on currentPage so it refetches when page changes
   useEffect(() => {
     if (news.length > 0) {
       setActiveNews(news[0]);
     }
   }, [news]);
+
+  // Function to handle page change
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+  };
 
   return (
     <div className="flex">
@@ -37,26 +51,28 @@ export default function DashboardNews() {
         Home
       </a>
       <div className="flex-col w-3/5 h-full">
-        <div className="flex gap-10">
-          <div className="bg-neutral-900 leading-10 w-full p-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
-            <p className="text-zinc-400">This week</p>
-            <h1 className="text-trueGray-50 text-4xl font-semibold">$1,329</h1>
-            <p className="text-zinc-400">
-              <span className="text-green-400">+25%</span> from last week
-            </p>
-          </div>
-          <div className="bg-neutral-900 w-full p-10 leading-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
-            <p className="text-zinc-400">This week</p>
-            <h1 className="text-trueGray-50 text-4xl font-semibold">$1,329</h1>
-            <p className="text-zinc-400">
-              <span className="text-green-400">+25%</span> from last week
-            </p>
-          </div>
-        </div>
         <div>
           <div className="bg-neutral-900 flec-col p-10 mt-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
-            <h1 className="text-trueGray-50 text-4xl font-bold">Latest News</h1>
-            <p className="text-zinc-400">The latest five news updates</p>
+            <div className="flex items-center justify-between">
+              <h1 className="text-trueGray-50 text-4xl font-bold">News</h1>
+              <div className="flex">
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  hidden={currentPage == 1}
+                  className="text-white flex items-center text-2xl"
+                >
+                  <ArrowLeftIcon className="w-5 h-5" />
+                  <p className="text-md ml-2 mr-8 font-semibold text-white">Previous</p>
+                </button>
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  className="text-white text-2xl flex items-center"
+                >
+                  <p className="text-md mr-2 font-semibold text-white">Next</p>
+                  <ArrowRightIcon className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
             <div className="flex justify-between mt-10 mr-2 ml-2">
               <p className="text-zinc-400">ID</p>
               <p className="text-zinc-400 basis-3/4">Title</p>
@@ -78,6 +94,23 @@ export default function DashboardNews() {
                 </div>
               </div>
             ))}
+            <div className="flex justify-end mt-8">
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  hidden={currentPage == 1}
+                  className="text-white flex items-center text-2xl"
+                >
+                  <ArrowLeftIcon className="w-5 h-5" />
+                  <p className="text-md ml-2 mr-8 font-semibold text-white">Previous</p>
+                </button>
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  className="text-white text-2xl flex items-center"
+                >
+                  <p className="text-md mr-2 font-semibold text-white">Next</p>
+                  <ArrowRightIcon className="w-5 h-5" />
+                </button>
+              </div>
           </div>
         </div>
       </div>
