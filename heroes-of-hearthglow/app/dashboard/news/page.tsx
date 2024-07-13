@@ -61,10 +61,10 @@ export default function DashboardNews() {
                 {currentPage > 1 && ( // Show previous button only if current page is greater than 1
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
-                    className="text-white flex items-center text-2xl"
+                    className="text-trueGray-50 flex items-center text-2xl"
                   >
                     <ArrowLeftIcon className="w-5 h-5" />
-                    <p className="text-md ml-2 mr-8 font-semibold text-white">
+                    <p className="text-md ml-2 mr-8 font-semibold text-trueGray-50">
                       Previous
                     </p>
                   </button>
@@ -73,9 +73,9 @@ export default function DashboardNews() {
                 {currentPage < totalPages && ( // Show next button only if current page is less than total pages
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
-                    className="text-white text-2xl flex items-center"
+                    className="text-trueGray-50 text-2xl flex items-center"
                   >
-                    <p className="text-md mr-2 font-semibold text-white">
+                    <p className="text-md mr-2 font-semibold text-trueGray-50">
                       Next
                     </p>
                     <ArrowRightIcon className="w-5 h-5" />
@@ -108,10 +108,10 @@ export default function DashboardNews() {
               {currentPage > 1 && (
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}
-                  className="text-white flex items-center text-2xl"
+                  className="text-trueGray-50 flex items-center text-2xl"
                 >
                   <ArrowLeftIcon className="w-5 h-5" />
-                  <p className="text-md ml-2 mr-8 font-semibold text-white">
+                  <p className="text-md ml-2 mr-8 font-semibold text-trueGray-50">
                     Previous
                   </p>
                 </button>
@@ -120,9 +120,9 @@ export default function DashboardNews() {
               {currentPage < totalPages && (
                 <button
                   onClick={() => handlePageChange(currentPage + 1)}
-                  className="text-white text-2xl flex items-center"
+                  className="text-trueGray-50 text-2xl flex items-center"
                 >
-                  <p className="text-md mr-2 font-semibold text-white">Next</p>
+                  <p className="text-md mr-2 font-semibold text-trueGray-50">Next</p>
                   <ArrowRightIcon className="w-5 h-5" />
                 </button>
               )}
