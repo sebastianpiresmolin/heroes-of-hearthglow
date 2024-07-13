@@ -3,8 +3,22 @@ import { User } from '@/app/lib/data';
 import { NextRequest, NextResponse } from 'next/server';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { corsMiddleware } from '@/corsMiddleware';
 
 export async function POST(request: NextRequest) {
+  const corsHeaders = corsMiddleware(request);
+  if (!corsHeaders) {
+    return NextResponse.json(
+      { error: 'CORS policy violation' },
+      { status: 403 }
+    );
+  }
+
+  if (request.method === 'OPTIONS') {
+    // End preflight request
+    return new NextResponse(null, { headers: corsHeaders as Headers });
+  }
+
   try {
     await connect();
     console.log('Database connected successfully');
