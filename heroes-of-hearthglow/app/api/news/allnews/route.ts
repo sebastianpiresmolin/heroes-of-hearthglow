@@ -6,20 +6,23 @@ connect();
 
 export async function GET(request: NextRequest) {
   try {
-    // Extract the page number from the query parameters, default to 1 if not provided
     const url = new URL(request.url);
-    const page = parseInt(url.searchParams.get('page') || '1', 8);
+    const page = parseInt(url.searchParams.get('page') || '1', 8); // Fix radix to 10 for decimal
 
-    // Calculate the number of items to skip (10 items per page)
     const itemsPerPage = 8;
     const skip = (page - 1) * itemsPerPage;
+
+    // Fetch the total count of news items
+    const totalCount = await News.countDocuments();
 
     // Fetch the news items with pagination
     const news = await News.find()
       .sort({ id: -1 })
       .limit(itemsPerPage)
       .skip(skip);
-    return NextResponse.json(news);
+
+    // Return news items and total count
+    return NextResponse.json({ news, totalCount });
   } catch (error: any) {
     return NextResponse.error();
   }

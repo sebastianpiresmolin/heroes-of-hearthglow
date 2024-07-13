@@ -19,20 +19,24 @@ export default function DashboardNews() {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [activeNews, setActiveNews] = useState<NewsItem>(news[0]);
   const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     async function fetchNews(page: number) {
-      const response = await fetch(`/api/news/allnews?page=${page}`);
-      const data = await response.json();
-      setNews(data);
-      if (data.length > 0) {
-        setActiveNews(data[0]);
-      } else {
-        setActiveNews(null);
+      try {
+        const response = await fetch(`/api/news/allnews?page=${page}`);
+        const { news, totalCount } = await response.json();
+        setNews(news);
+        setActiveNews(news.length > 0 ? news[0] : null);
+        console.log('data length: ' + news.length);
+        setTotalPages(Math.ceil(totalCount / itemsPerPage));
+      } catch (error) {
+        console.error('Failed to fetch news:', error);
       }
     }
 
-    fetchNews(currentPage); // Use currentPage state when fetching news
+    fetchNews(currentPage);
   }, [currentPage]); // Depend on currentPage so it refetches when page changes
   useEffect(() => {
     if (news.length > 0) {
@@ -45,6 +49,8 @@ export default function DashboardNews() {
     setCurrentPage(newPage);
   };
 
+  console.log('pages: ' + totalPages);
+
   return (
     <div className="flex">
       <a className="absolute top-3 text-zinc-500" href="/dashboard">
@@ -56,21 +62,30 @@ export default function DashboardNews() {
             <div className="flex items-center justify-between">
               <h1 className="text-trueGray-50 text-4xl font-bold">News</h1>
               <div className="flex">
-                <button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  hidden={currentPage == 1}
-                  className="text-white flex items-center text-2xl"
-                >
-                  <ArrowLeftIcon className="w-5 h-5" />
-                  <p className="text-md ml-2 mr-8 font-semibold text-white">Previous</p>
-                </button>
-                <button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  className="text-white text-2xl flex items-center"
-                >
-                  <p className="text-md mr-2 font-semibold text-white">Next</p>
-                  <ArrowRightIcon className="w-5 h-5" />
-                </button>
+                {currentPage > 1 && (
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    className="text-white flex items-center text-2xl"
+                  >
+                    <ArrowLeftIcon className="w-5 h-5" />
+                    <p className="text-md ml-2 mr-8 font-semibold text-white">
+                      Previous
+                    </p>
+                  </button>
+                )}
+                {/* Example for Next button, assuming you know the total number of pages as totalPages */}
+
+                {currentPage < totalPages && (
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    className="text-white text-2xl flex items-center"
+                  >
+                    <p className="text-md mr-2 font-semibold text-white">
+                      Next
+                    </p>
+                    <ArrowRightIcon className="w-5 h-5" />
+                  </button>
+                )}
               </div>
             </div>
             <div className="flex justify-between mt-10 mr-2 ml-2">
@@ -95,22 +110,24 @@ export default function DashboardNews() {
               </div>
             ))}
             <div className="flex justify-end mt-8">
-                <button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  hidden={currentPage == 1}
-                  className="text-white flex items-center text-2xl"
-                >
-                  <ArrowLeftIcon className="w-5 h-5" />
-                  <p className="text-md ml-2 mr-8 font-semibold text-white">Previous</p>
-                </button>
-                <button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  className="text-white text-2xl flex items-center"
-                >
-                  <p className="text-md mr-2 font-semibold text-white">Next</p>
-                  <ArrowRightIcon className="w-5 h-5" />
-                </button>
-              </div>
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage == 1}
+                className="text-white flex items-center text-2xl"
+              >
+                <ArrowLeftIcon className="w-5 h-5" />
+                <p className="text-md ml-2 mr-8 font-semibold text-white">
+                  Previous
+                </p>
+              </button>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                className="text-white text-2xl flex items-center"
+              >
+                <p className="text-md mr-2 font-semibold text-white">Next</p>
+                <ArrowRightIcon className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
