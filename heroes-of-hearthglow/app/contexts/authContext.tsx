@@ -7,21 +7,24 @@ interface IAuthContext {
   setLoggedIn: (value: boolean) => void; // Setter function
 }
 
-const AuthContext = createContext<IAuthContext>({ // Create context with default value
+const AuthContext = createContext<IAuthContext>({
+  // Create context with default value
   isLoggedIn: false,
   setLoggedIn: () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ // Provider component
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  // Provider component
   children,
 }) => {
   const [isLoggedIn, setLoggedIn] = useState(() => {
     return !!Cookies.get('isLoggedIn');
   });
 
-  useEffect(() => { // Update cookie when isLoggedIn changes
+  useEffect(() => {
+    // Update cookie when isLoggedIn changes
     if (isLoggedIn) {
       Cookies.set('isLoggedIn', 'true');
     } else {
@@ -30,7 +33,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ // Provi
   }, [isLoggedIn]);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}> // Provide value to context
+    // Provide value to children
+    <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );
