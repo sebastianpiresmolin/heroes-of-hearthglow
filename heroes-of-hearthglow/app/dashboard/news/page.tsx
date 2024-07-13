@@ -28,9 +28,8 @@ export default function DashboardNews() {
         const response = await fetch(`/api/news/allnews?page=${page}`);
         const { news, totalCount } = await response.json();
         setNews(news);
-        setActiveNews(news.length > 0 ? news[0] : null);
-        console.log('data length: ' + news.length);
-        setTotalPages(Math.ceil(totalCount / itemsPerPage));
+        setActiveNews(news.length > 0 ? news[0] : null); // Set first news item of the pagination as active
+        setTotalPages(Math.ceil(totalCount / itemsPerPage)); // Calculate total pages
       } catch (error) {
         console.error('Failed to fetch news:', error);
       }
@@ -44,12 +43,9 @@ export default function DashboardNews() {
     }
   }, [news]);
 
-  // Function to handle page change
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
-
-  console.log('pages: ' + totalPages);
 
   return (
     <div className="flex">
@@ -62,7 +58,7 @@ export default function DashboardNews() {
             <div className="flex items-center justify-between">
               <h1 className="text-trueGray-50 text-4xl font-bold">News</h1>
               <div className="flex">
-                {currentPage > 1 && (
+                {currentPage > 1 && ( // Show previous button only if current page is greater than 1
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     className="text-white flex items-center text-2xl"
@@ -73,9 +69,8 @@ export default function DashboardNews() {
                     </p>
                   </button>
                 )}
-                {/* Example for Next button, assuming you know the total number of pages as totalPages */}
 
-                {currentPage < totalPages && (
+                {currentPage < totalPages && ( // Show next button only if current page is less than total pages
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     className="text-white text-2xl flex items-center"
@@ -110,23 +105,27 @@ export default function DashboardNews() {
               </div>
             ))}
             <div className="flex justify-end mt-8">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage == 1}
-                className="text-white flex items-center text-2xl"
-              >
-                <ArrowLeftIcon className="w-5 h-5" />
-                <p className="text-md ml-2 mr-8 font-semibold text-white">
-                  Previous
-                </p>
-              </button>
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                className="text-white text-2xl flex items-center"
-              >
-                <p className="text-md mr-2 font-semibold text-white">Next</p>
-                <ArrowRightIcon className="w-5 h-5" />
-              </button>
+              {currentPage > 1 && (
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  className="text-white flex items-center text-2xl"
+                >
+                  <ArrowLeftIcon className="w-5 h-5" />
+                  <p className="text-md ml-2 mr-8 font-semibold text-white">
+                    Previous
+                  </p>
+                </button>
+              )}
+
+              {currentPage < totalPages && (
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  className="text-white text-2xl flex items-center"
+                >
+                  <p className="text-md mr-2 font-semibold text-white">Next</p>
+                  <ArrowRightIcon className="w-5 h-5" />
+                </button>
+              )}
             </div>
           </div>
         </div>

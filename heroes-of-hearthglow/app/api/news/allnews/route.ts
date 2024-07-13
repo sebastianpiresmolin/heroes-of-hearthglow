@@ -7,7 +7,7 @@ connect();
 export async function GET(request: NextRequest) {
   try {
     const url = new URL(request.url);
-    const page = parseInt(url.searchParams.get('page') || '1', 8); // Fix radix to 10 for decimal
+    const page = parseInt(url.searchParams.get('page') || '1', 8);
 
     const itemsPerPage = 8;
     const skip = (page - 1) * itemsPerPage;
