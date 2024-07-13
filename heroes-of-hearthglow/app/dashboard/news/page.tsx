@@ -49,14 +49,19 @@ export default function DashboardNews() {
 
   return (
     <div className="flex">
-      <a className="absolute top-3 text-zinc-500" href="/dashboard">
-        Home
-      </a>
+      <div className="flex absolute top-3">
+        <a className=" text-zinc-500" href="/dashboard">
+          Home
+        </a>
+        <p className=" text-zinc-500 ml-2">&gt;</p>
+        <p className=" text-zinc-500 ml-2">News</p>
+      </div>
       <div className="flex-col w-3/5 h-full">
         <div>
           <div className="bg-neutral-900 flec-col p-10 mt-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
             <div className="flex items-center justify-between">
               <h1 className="text-trueGray-50 text-4xl font-bold">News</h1>
+
               <div className="flex">
                 {currentPage > 1 && ( // Show previous button only if current page is greater than 1
                   <button
@@ -83,6 +88,12 @@ export default function DashboardNews() {
                 )}
               </div>
             </div>
+            <Link
+              href="/dashboard/news/create"
+              className="text-trueGray-50 mt-4 w-fit bg-zinc-800 p-4 rounded-lg hover:bg-zinc-700 outline outline-1 outline-zinc-700 flex items-center"
+            >
+              Create News Post +
+            </Link>
             <div className="flex justify-between mt-10 mr-2 ml-2">
               <p className="text-zinc-400">ID</p>
               <p className="text-zinc-400 basis-3/4">Title</p>
@@ -95,7 +106,7 @@ export default function DashboardNews() {
                 onClick={() => setActiveNews(news)}
               >
                 <div className="flex justify-between align-middle">
-                  <p className="text-trueGray-50  ">
+                  <p className="text-trueGray-50 w-[50px] ">
                     <span className="text-zinc-400"># </span>
                     {news.id}
                   </p>
@@ -104,33 +115,10 @@ export default function DashboardNews() {
                 </div>
               </div>
             ))}
-            <div className="flex justify-end mt-8">
-              {currentPage > 1 && (
-                <button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  className="text-trueGray-50 flex items-center text-2xl"
-                >
-                  <ArrowLeftIcon className="w-5 h-5" />
-                  <p className="text-md ml-2 mr-8 font-semibold text-trueGray-50">
-                    Previous
-                  </p>
-                </button>
-              )}
-
-              {currentPage < totalPages && (
-                <button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  className="text-trueGray-50 text-2xl flex items-center"
-                >
-                  <p className="text-md mr-2 font-semibold text-trueGray-50">Next</p>
-                  <ArrowRightIcon className="w-5 h-5" />
-                </button>
-              )}
-            </div>
           </div>
         </div>
       </div>
-      <div className="flex-col bg-neutral-900 flec-col p-10 ml-10 w-2/5 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
+      <div className="flex-col mt-10 bg-neutral-900 flec-col p-10 ml-10 w-2/5 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
         <div className="flex text-2xl justify-between">
           <p className="text-trueGray-50">
             <span className="text-zinc-400"># </span>
