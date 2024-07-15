@@ -15,13 +15,11 @@ export default async function LatestNews() {
         </h1>
         <div className="relative">
           {' '}
-          {/* Container with relative positioning */}
           <img
             src={news[0].image}
             alt={news[0].title}
             className=" w-full h-auto rounded-t-lg shadow-[inset_0px_0px_10px_10px_#black]"
           />
-          {/* Absolute positioning for the p element */}
           <p className="absolute bottom-0 left-0 p-2 z-10 text-white ">
             {news[0].time}
           </p>
