@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function CreateNews() {
   interface newsItemInterface {
@@ -18,7 +19,7 @@ export default function CreateNews() {
     const day = `${date.getDate()}`.padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
-
+  const router = useRouter();
   const [newsItem, setNewsItem] = React.useState({
     title: '',
     description: '',
@@ -38,6 +39,7 @@ export default function CreateNews() {
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
+  // Submit news item to database
   async function submitNewsItem(newsItem: newsItemInterface) {
     const response = await fetch('/api/news/createNews', {
       method: 'POST',
@@ -46,6 +48,7 @@ export default function CreateNews() {
       },
       body: JSON.stringify(newsItem),
     });
+    router.push('/dashboard/news');
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
