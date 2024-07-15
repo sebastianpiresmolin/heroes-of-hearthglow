@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const allowedOrigins = ['https://heroes-of-hearthglow.vercel.app'];
+const allowedOrigins = [
+  'https://heroes-of-hearthglow.vercel.app',
+  'http://localhost:3000',
+];
 
 export function corsMiddleware(request: NextRequest) {
   const origin = request.headers.get('origin');

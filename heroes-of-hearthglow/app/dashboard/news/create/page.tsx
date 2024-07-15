@@ -3,6 +3,14 @@
 import React, { useEffect } from 'react';
 
 export default function CreateNews() {
+  interface newsItemInterface {
+    title: string;
+    description: string;
+    image: string;
+    id: number;
+    time: string;
+  }
+
   // Set the current date in the format YYYY-MM-DD, type string
   const formatDate = (date: Date) => {
     const year = date.getFullYear().toString();
@@ -29,6 +37,23 @@ export default function CreateNews() {
       })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
+
+  async function submitNewsItem(newsItem: newsItemInterface) {
+    const response = await fetch('/api/news/createNews', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newsItem),
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
+    console.log(data);
+  }
 
   return (
     <div className="flex-col">
@@ -148,7 +173,7 @@ export default function CreateNews() {
           </button>
           <button
             className="text-trueGray-50 w-fit bg-zinc-800 p-4 mt-4 rounded-lg hover:bg-zinc-700 outline outline-1 outline-zinc-700"
-            onClick={() => setShowPreview(false)}
+            onClick={() => submitNewsItem(newsItem)}
           >
             Create & Publish
           </button>
