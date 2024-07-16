@@ -6,11 +6,9 @@ connect();
 
 export async function GET(request: NextRequest) {
     try {
-      // Use URLSearchParams to parse query parameters
       const url = new URL(request.url);
       const id = url.searchParams.get('id');
-  
-      // Ensure id is provided
+
       if (!id) {
         return new Response('ID query parameter is missing', { status: 400 });
       }

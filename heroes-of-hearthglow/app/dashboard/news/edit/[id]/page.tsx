@@ -96,14 +96,14 @@ export default function PatchNews() {
           News
         </a>
         <p className=" text-zinc-500 ml-2">&gt;</p>
-        <p className=" text-zinc-500 ml-2">Create</p>
+        <p className=" text-zinc-500 ml-2">Edit</p>
       </div>
       {/* Create News Form */}
       {!showPreview && (
         <div className="flex-col w-3/5 m-auto justify-center h-full">
           <div className="bg-neutral-900 m-auto w-fit h-fit flex-col p-10 mt-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
             <h1 className="text-trueGray-50 text-4xl font-bold">
-              Create News Item
+              Edit News Item
             </h1>
             <div className="flex gap-20">
               <div>

@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { connect } from '../../../lib/dbconnect';
 import { News } from '../../../lib/data';
 
-
 connect();
 
 export async function PATCH(request: NextRequest) {
