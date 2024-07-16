@@ -2,7 +2,6 @@
 
 import React, { use, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 import { useParams } from 'next/navigation';
 
 export default function PatchNews() {
@@ -34,6 +33,25 @@ export default function PatchNews() {
       }));
     }
   }, [id]);
+
+  useEffect(() => {
+    async function getNewsItem() {
+      try {
+        const response = await fetch(`/api/news/getById?id=${encodeURIComponent(newsItem.id)}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setNewsItem(data);
+      } catch (error) {
+        console.error("Failed to fetch news item", error);
+      }
+    }
+  
+    if (newsItem.id !== 0) {
+      getNewsItem();
+    }
+  }, [newsItem.id]);
 
   // Submit news item to database
   async function submitNewsItem(newsItem: newsItemInterface) {
