@@ -140,11 +140,11 @@ export default function DashboardNews() {
         </div>
         <div className="flex gap-10 mt-5">
           <Link
-            href="/dashboard/news"
+            href={`/dashboard/news/edit/${activeNews ? activeNews.id : ''}`}
             className="text-trueGray-50 w-fit bg-zinc-800 p-4 mt-4 rounded-lg hover:bg-zinc-700 outline outline-1 outline-zinc-700 flex items-center"
           >
             <PencilIcon className="w-5 h-5 mr-2 " />
-            <p className="text-md font-semibold">Edit</p>
+            <span className="text-md font-semibold">Edit</span>
           </Link>
           <Link
             href="/dashboard/news"
