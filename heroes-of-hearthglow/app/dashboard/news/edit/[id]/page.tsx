@@ -37,39 +37,48 @@ export default function PatchNews() {
   useEffect(() => {
     async function getNewsItem() {
       try {
-        const response = await fetch(`/api/news/getById?id=${encodeURIComponent(newsItem.id)}`);
+        const response = await fetch(
+          `/api/news/getById?id=${encodeURIComponent(newsItem.id)}`
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
         setNewsItem(data);
       } catch (error) {
-        console.error("Failed to fetch news item", error);
+        console.error('Failed to fetch news item', error);
       }
     }
-  
+
     if (newsItem.id !== 0) {
       getNewsItem();
     }
   }, [newsItem.id]);
 
-  // Submit news item to database
-  async function submitNewsItem(newsItem: newsItemInterface) {
-    const response = await fetch('/api/news/createNews', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newsItem),
-    });
-    router.push('/dashboard/news');
+  // Submit and PATCH the news item
+  async function editNewsItem(newsItem: newsItemInterface) {
+    try {
+      const response = await fetch(
+        `/api/news/editNewsItem?id=${encodeURIComponent(newsItem.id)}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newsItem),
+        }
+      );
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log(data);
+      router.push('/dashboard/news');
+    } catch (error) {
+      console.error('Failed to edit news item:', error);
     }
-
-    const data = await response.json();
-    console.log(data);
   }
 
   return (
@@ -190,9 +199,9 @@ export default function PatchNews() {
           </button>
           <button
             className="text-trueGray-50 w-fit bg-zinc-800 p-4 mt-4 rounded-lg hover:bg-zinc-700 outline outline-1 outline-zinc-700"
-            onClick={() => submitNewsItem(newsItem)}
+            onClick={() => editNewsItem(newsItem)}
           >
-            Create & Publish
+            Submit changes
           </button>
         </div>
       )}
