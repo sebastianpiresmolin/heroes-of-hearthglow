@@ -1,5 +1,6 @@
 'use client';
 
+// file path: /app/layout.tsx or /app/layout.js
 import './globals.css';
 import { roboto } from '@/app/ui/fonts';
 import { AuthProvider } from '@/app/contexts/authContext';
