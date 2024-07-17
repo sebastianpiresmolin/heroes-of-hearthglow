@@ -7,6 +7,14 @@ import {
   ArrowRightIcon,
   ArrowLeftIcon,
 } from '@heroicons/react/24/outline';
+import {
+  Modal,
+  Button,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from '@nextui-org/react';
 
 export default function DashboardNews() {
   interface NewsItem {
@@ -16,27 +24,32 @@ export default function DashboardNews() {
     description: string;
   }
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = () => setIsModalVisible(true);
+  const hideModal = () => setIsModalVisible(false);
+
   const [news, setNews] = useState<NewsItem[]>([]);
   const [activeNews, setActiveNews] = useState<NewsItem>(news[0]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
   const [totalPages, setTotalPages] = useState(1);
 
-  useEffect(() => {
-    async function fetchNews(page: number) {
-      try {
-        const response = await fetch(`/api/news/allnews?page=${page}`);
-        const { news, totalCount } = await response.json();
-        setNews(news);
-        setActiveNews(news.length > 0 ? news[0] : null); // Set first news item of the pagination as active
-        setTotalPages(Math.ceil(totalCount / itemsPerPage)); // Calculate total pages
-      } catch (error) {
-        console.error('Failed to fetch news:', error);
-      }
+  const fetchNews = async (page: number) => {
+    try {
+      const response = await fetch(`/api/news/allnews?page=${page}`);
+      const { news, totalCount } = await response.json();
+      setNews(news);
+      setActiveNews(news.length > 0 ? news[0] : null); 
+      setTotalPages(Math.ceil(totalCount / itemsPerPage));
+    } catch (error) {
+      console.error('Failed to fetch news:', error);
     }
+  };
 
+  useEffect(() => {
     fetchNews(currentPage);
-  }, [currentPage]); // Depend on currentPage so it refetches when page changes
+  }, [currentPage]);
+
   useEffect(() => {
     if (news.length > 0) {
       setActiveNews(news[0]);
@@ -45,6 +58,29 @@ export default function DashboardNews() {
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
+  };
+
+  const handleDelete = async () => {
+    if (!activeNews?.id) {
+      console.error('No news item selected for deletion');
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/news/deleteNews/${activeNews.id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete the news item');
+      }
+
+      await fetchNews(currentPage);
+    } catch (error) {
+      console.error('Error deleting news item:', error);
+    } finally {
+      hideModal();
+    }
   };
 
   return (
@@ -146,14 +182,38 @@ export default function DashboardNews() {
             <PencilIcon className="w-5 h-5 mr-2 " />
             <span className="text-md font-semibold">Edit</span>
           </Link>
-          <Link
-            href="/dashboard/news"
+          <button
+            onClick={showModal}
             className="text-red-500 w-fit bg-zinc-800 p-4 mt-4 rounded-lg hover:bg-red-900 outline outline-1 outline-zinc-700 flex items-center"
           >
             <TrashIcon className="w-5 h-5 mr-2 " />
             <p className="text-md font-semibold">Delete</p>
-          </Link>
+          </button>
         </div>
+        <Modal
+          closeButton
+          aria-labelledby="modal-title"
+          onClose={hideModal}
+          isOpen={isModalVisible}
+          className="bg-neutral-900 text-trueGray-50 p-10"
+        >
+          <ModalHeader>
+            <p id="modal-title" className="text-lg text-trueGray-50">
+              Confirm Deletion
+            </p>
+          </ModalHeader>
+          <ModalContent>
+            <ModalBody>
+              Are you sure you want to delete this news item?
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" onClick={handleDelete}>
+                DELETE
+              </Button>
+              <Button onClick={hideModal}>Cancel</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </div>
     </div>
   );

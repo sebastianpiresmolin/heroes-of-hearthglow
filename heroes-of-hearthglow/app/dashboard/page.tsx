@@ -4,6 +4,14 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/navigation';
+import {
+  Modal,
+  Button,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from '@nextui-org/react';
 
 export default function DashboardHome() {
   interface NewsItem {
@@ -12,17 +20,21 @@ export default function DashboardHome() {
     time: string;
     description: string;
   }
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => setIsModalVisible(true);
+  const hideModal = () => setIsModalVisible(false);
   const router = useRouter();
   const [news, setNews] = useState<NewsItem[]>([]);
   const [activeNews, setActiveNews] = useState<NewsItem>(news[0]);
 
-  useEffect(() => {
-    async function fetchNews() {
-      const response = await fetch('/api/news/fivelatestnews');
-      const data = await response.json();
-      setNews(data);
-    }
+  async function fetchNews() {
+    const response = await fetch('/api/news/fivelatestnews');
+    const data = await response.json();
+    setNews(data);
+  }
 
+  useEffect(() => {
     fetchNews();
   }, []);
 
@@ -31,6 +43,29 @@ export default function DashboardHome() {
       setActiveNews(news[0]);
     }
   }, [news]);
+
+  const handleDelete = async () => {
+    if (!activeNews?.id) {
+      console.error('No news item selected for deletion');
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/news/deleteNews/${activeNews.id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete the news item');
+      }
+
+      await fetchNews();
+    } catch (error) {
+      console.error('Error deleting news item:', error);
+    } finally {
+      hideModal();
+    }
+  };
 
   return (
     <div className="flex">
@@ -110,14 +145,38 @@ export default function DashboardHome() {
             <PencilIcon className="w-5 h-5 mr-2 " />
             <span className="text-md font-semibold">Edit</span>
           </Link>
-          <Link
-            href="/dashboard/news"
+          <button
+            onClick={showModal}
             className="text-red-500 w-fit bg-zinc-800 p-4 mt-4 rounded-lg hover:bg-red-900 outline outline-1 outline-zinc-700 flex items-center"
           >
             <TrashIcon className="w-5 h-5 mr-2 " />
             <p className="text-md font-semibold">Delete</p>
-          </Link>
+          </button>
         </div>
+        <Modal
+          closeButton
+          aria-labelledby="modal-title"
+          onClose={hideModal}
+          isOpen={isModalVisible}
+          className="bg-neutral-900 text-trueGray-50 p-10"
+        >
+          <ModalHeader>
+            <p id="modal-title" className="text-lg text-trueGray-50">
+              Confirm Deletion
+            </p>
+          </ModalHeader>
+          <ModalContent>
+            <ModalBody>
+              Are you sure you want to delete this news item?
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" onClick={handleDelete}>
+                DELETE
+              </Button>
+              <Button onClick={hideModal}>Cancel</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </div>
     </div>
   );
