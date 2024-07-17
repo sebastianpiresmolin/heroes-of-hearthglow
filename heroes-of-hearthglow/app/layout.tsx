@@ -45,6 +45,7 @@ export default function RootLayout({
               <script
                 dangerouslySetInnerHTML={{
                   __html: `
+                    console.log('Initializing Google Analytics');
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
