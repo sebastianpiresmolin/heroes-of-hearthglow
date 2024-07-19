@@ -15,10 +15,13 @@ type GA4AnalyticsData = {
 };
 
 export default function Analytics() {
-  const [data, setData] = useState<GA4AnalyticsData | null>(null);
+  const [sevenDayData, setSevenDayData] = useState<GA4AnalyticsData | null>(
+    null
+  );
 
+  // Fetch 7 day users data from the server
   useEffect(() => {
-    fetch('/api/analytics')
+    fetch('/api/analytics/sevenDaysUsers')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -28,7 +31,7 @@ export default function Analytics() {
       .then((text) => {
         try {
           const data = JSON.parse(text); // Try to parse the text as JSON
-          setData(data);
+          setSevenDayData(data);
         } catch (error) {
           console.error('Error parsing JSON:', error);
           console.log('Received text:', text); // Log the raw text to help with debugging
@@ -36,14 +39,21 @@ export default function Analytics() {
       })
       .catch((error) => console.error('Error fetching analytics data:', error));
   }, []);
-  if (!data) {
+
+  if (!sevenDayData) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="text-trueGray-50">
-      <h1>Google Analytics Data</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      {sevenDayData && sevenDayData.rows.length > 0 ? (
+        <div>
+          <p>7 Day Users</p>
+          <p>{sevenDayData.rows[0].metricValues[0].value}</p>
+        </div>
+      ) : (
+        <p>No data available</p>
+      )}
     </div>
   );
 }

@@ -19,18 +19,12 @@ export async function GET(req: Request) {
       property: propertyId,
       dateRanges: [
         {
-          startDate: '30daysAgo',
+          startDate: '7daysAgo',
           endDate: 'today',
         },
       ],
-      dimensions: [
-        // Specify the dimensions you want to include in your report
-        { name: 'city' }, // Example dimension
-      ],
-      metrics: [
-        // Specify the metrics you want to include in your report
-        { name: 'active7DayUsers' }, // Example metric
-      ],
+      dimensions: [{ name: 'pagePath' }],
+      metrics: [{ name: 'active7DayUsers' }],
     });
 
     return NextResponse.json(response);
