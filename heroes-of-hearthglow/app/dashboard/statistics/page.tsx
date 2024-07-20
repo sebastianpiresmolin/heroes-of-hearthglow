@@ -27,6 +27,12 @@ export default async function AnalyticsPage() {
   const oneDayDataCompare = await fetchAnalyticsData(
     'http://localhost:3000/api/analytics/oneDaysUsersCompare'
   );
+  const oneWeekData = await fetchAnalyticsData(
+    'http://localhost:3000/api/analytics/oneWeekUsers'
+  );
+  const oneWeekDataCompare = await fetchAnalyticsData(
+    'http://localhost:3000/api/analytics/oneWeekUsersCompare'
+  );
 
   return (
     <div className="text-trueGray-50">
@@ -34,6 +40,8 @@ export default async function AnalyticsPage() {
         <AnalyticsClient
           oneDayData={oneDayData}
           oneDayDataCompare={oneDayDataCompare}
+          oneWeekData={oneWeekData}
+          oneWeekDataCompare={oneWeekDataCompare}
         />
       </Suspense>
     </div>
