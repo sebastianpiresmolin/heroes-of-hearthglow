@@ -59,7 +59,10 @@ export default async function AnalyticsPage() {
   );
 
   return (
-    <div className="text-trueGray-50">
+    <div className="text-trueGray-50 flex-col">
+      <div className="flex absolute top-3">
+        <p className=" text-zinc-500 ml-2">Statistics</p>
+      </div>
       <Suspense fallback={<div>Loading...</div>}>
         <AnalyticsClient
           oneDayData={oneDayData}

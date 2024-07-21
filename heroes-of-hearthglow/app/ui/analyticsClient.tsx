@@ -192,13 +192,15 @@ export default function AnalyticsClient({
   ]);
 
   return (
-    <div className="text-trueGray-50">
+    <div className="text-trueGray-50 flex flex-row flex-wrap h-full w-[1000px] gap-5 m-auto">
       {!oneDayData ? (
         <div>Loading...</div>
       ) : oneDayData.rows.length > 0 ? (
-        <div>
-          <p>Daily Users</p>
-          <p>{oneDayData.rows[0].metricValues[0].value}</p>
+        <div className="bg-neutral-900 w-[300px] p-10 leading-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
+          <p className="text-zinc-400">Daily Users</p>
+          <p className="text-trueGray-50 text-4xl font-semibold">
+            {oneDayData.rows[0].metricValues[0].value}
+          </p>
           {oneDayDataCompare && oneDayDataCompare.rows.length > 0 ? (
             <p
               className={
@@ -228,9 +230,11 @@ export default function AnalyticsClient({
       {!oneWeekData ? (
         <div>Loading...</div>
       ) : oneWeekData.rows.length > 0 ? (
-        <div>
-          <p>Weekly Users</p>
-          <p>{oneWeekData.rows[0].metricValues[0].value}</p>
+        <div className="bg-neutral-900 w-[300px] p-10 leading-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
+          <p className="text-zinc-400">Weekly Users</p>
+          <p className="text-trueGray-50 text-4xl font-semibold">
+            {oneWeekData.rows[0].metricValues[0].value}
+          </p>
           {oneWeekDataCompare && oneWeekDataCompare.rows.length > 0 ? (
             <p
               className={
@@ -260,9 +264,11 @@ export default function AnalyticsClient({
       {!oneMonthData ? (
         <div>Loading...</div>
       ) : oneMonthData.rows.length > 0 ? (
-        <div>
-          <p>Monthly Users</p>
-          <p>{oneMonthData.rows[0].metricValues[0].value}</p>
+        <div className="bg-neutral-900 w-[300px] p-10 leading-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
+          <p className="text-zinc-400">Monthly Users</p>
+          <p className="text-trueGray-50 text-4xl font-semibold">
+            {oneMonthData.rows[0].metricValues[0].value}
+          </p>
           {oneMonthDataCompare && oneMonthDataCompare.rows.length > 0 ? (
             <p
               className={
@@ -292,9 +298,11 @@ export default function AnalyticsClient({
       {!threeMonthData ? (
         <div>Loading...</div>
       ) : threeMonthData.rows.length > 0 ? (
-        <div>
-          <p>3 Months Users</p>
-          <p>{threeMonthData.rows[0].metricValues[0].value}</p>
+        <div className="bg-neutral-900 w-[300px] p-10 leading-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
+          <p className="text-zinc-400">3 Months Users</p>
+          <p className="text-trueGray-50 text-4xl font-semibold">
+            {threeMonthData.rows[0].metricValues[0].value}
+          </p>
           {threeMonthDataCompare && threeMonthDataCompare.rows.length > 0 ? (
             <p
               className={
@@ -324,9 +332,11 @@ export default function AnalyticsClient({
       {!sixMonthData ? (
         <div>Loading...</div>
       ) : sixMonthData.rows.length > 0 ? (
-        <div>
-          <p>6 Months Users</p>
-          <p>{sixMonthData.rows[0].metricValues[0].value}</p>
+        <div className="bg-neutral-900 w-[300px] p-10 leading-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
+          <p className="text-zinc-400">6 Months Users</p>
+          <p className="text-trueGray-50 text-4xl font-semibold">
+            {sixMonthData.rows[0].metricValues[0].value}
+          </p>
           {sixMonthDataCompare && sixMonthDataCompare.rows.length > 0 ? (
             <p
               className={
@@ -356,9 +366,11 @@ export default function AnalyticsClient({
       {!oneYearData ? (
         <div>Loading...</div>
       ) : oneYearData.rows.length > 0 ? (
-        <div>
-          <p>Yearly Users</p>
-          <p>{oneYearData.rows[0].metricValues[0].value}</p>
+        <div className="bg-neutral-900 w-[300px] p-10 leading-10 shadow-sm shadow-black outline outline-1 outline-zinc-700 rounded-lg">
+          <p className="text-zinc-400">1 Year Users</p>
+          <p className="text-trueGray-50 text-4xl font-semibold">
+            {oneYearData.rows[0].metricValues[0].value}
+          </p>
           {oneYearDataCompare && oneYearDataCompare.rows.length > 0 ? (
             <p
               className={
