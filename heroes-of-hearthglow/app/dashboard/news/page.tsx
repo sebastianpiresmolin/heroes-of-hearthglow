@@ -86,10 +86,6 @@ export default function DashboardNews() {
   return (
     <div className="flex">
       <div className="flex absolute top-3">
-        <a className=" text-zinc-500" href="/dashboard">
-          Home
-        </a>
-        <p className=" text-zinc-500 ml-2">&gt;</p>
         <p className=" text-zinc-500 ml-2">News</p>
       </div>
       <div className="flex-col w-3/5 h-full">

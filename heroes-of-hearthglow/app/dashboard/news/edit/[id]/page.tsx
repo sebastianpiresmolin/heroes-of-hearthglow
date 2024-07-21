@@ -84,10 +84,6 @@ export default function PatchNews() {
   return (
     <div className="flex-col">
       <div className="flex absolute top-3">
-        <a className=" text-zinc-500" href="/dashboard">
-          Home
-        </a>
-        <p className=" text-zinc-500 ml-2">&gt;</p>
         <a
           className=" text-zinc-500 ml-2"
           href="/dashboard/news
