@@ -26,7 +26,9 @@ async function fetchAnalyticsData(url: string): Promise<GA4AnalyticsData> {
   }
 }
 
+
 export default async function AnalyticsPage() {
+  // Fetch analytics data for the last 24 hours, 7 days, 30 days, 90 days, 180 days, and 365 days
   const oneDayData = await fetchAnalyticsData(
     'https://heroes-of-hearthglow.vercel.app/api/analytics/oneDaysUsers'
   );
