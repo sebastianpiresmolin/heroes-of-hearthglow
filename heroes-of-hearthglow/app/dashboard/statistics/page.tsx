@@ -22,40 +22,40 @@ async function fetchAnalyticsData(url: string): Promise<GA4AnalyticsData> {
 
 export default async function AnalyticsPage() {
   const oneDayData = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app//api/analytics/oneDaysUsers'
+    'http://localhost:3000/api/analytics/oneDaysUsers'
   );
   const oneDayDataCompare = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app//api/analytics/oneDaysUsersCompare'
+    'http://localhost:3000/api/analytics/oneDaysUsersCompare'
   );
   const oneWeekData = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app//api/analytics/oneWeekUsers'
+    'http://localhost:3000/api/analytics/oneWeekUsers'
   );
   const oneWeekDataCompare = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app//api/analytics/oneWeekUsersCompare'
+    'http://localhost:3000/api/analytics/oneWeekUsersCompare'
   );
   const oneMonthData = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app//api/analytics/oneMonthUsers'
+    'http://localhost:3000/api/analytics/oneMonthUsers'
   );
   const oneMonthDataCompare = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app//api/analytics/oneMonthUsersCompare'
+    'http://localhost:3000/api/analytics/oneMonthUsersCompare'
   );
   const threeMonthData = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app//api/analytics/threeMonthUsers'
+    'http://localhost:3000/api/analytics/threeMonthUsers'
   );
   const threeMonthDataCompare = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app//api/analytics/threeMonthUsersCompare'
+    'http://localhost:3000/api/analytics/threeMonthUsersCompare'
   );
   const sixMonthData = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app//api/analytics/sixMonthUsers'
+    'http://localhost:3000/api/analytics/sixMonthUsers'
   );
   const sixMonthDataCompare = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app//api/analytics/sixMonthUsersCompare'
+    'http://localhost:3000/api/analytics/sixMonthUsersCompare'
   );
   const oneYearData = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app//api/analytics/oneYearUsers'
+    'http://localhost:3000/api/analytics/oneYearUsers'
   );
   const oneYearDataCompare = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app//api/analytics/oneYearUsersCompare'
+    'http://localhost:3000/api/analytics/oneYearUsersCompare'
   );
 
   return (
