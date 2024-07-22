@@ -1,32 +1,7 @@
+// AnalyticsPage.tsx
 import { Suspense } from 'react';
+import { fetchAnalyticsData } from '../../lib/fetchAnalyticsData';
 import AnalyticsClient from '../../ui/analyticsClient';
-
-type GA4AnalyticsData = {
-  rows: Array<{
-    dimensionValues: Array<{
-      value: string;
-    }>;
-    metricValues: Array<{
-      value: string;
-    }>;
-  }>;
-};
-
-async function fetchAnalyticsData(url: string): Promise<GA4AnalyticsData> {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) {
-      console.error(`Failed to fetch data from ${url}. Status: ${res.status}`);
-      throw new Error('Failed to fetch data');
-    }
-    return res.json();
-  } catch (error) {
-    console.error(`Error fetching data from ${url}:`, error);
-    throw error; // Rethrow to ensure the error is not silently caught
-  }
-}
-
-
 
 export default async function AnalyticsPage() {
   // Fetch analytics data for the last 24 hours, 7 days, 30 days, 90 days, 180 days, and 365 days
@@ -66,7 +41,6 @@ export default async function AnalyticsPage() {
   const oneYearDataCompare = await fetchAnalyticsData(
     'https://heroes-of-hearthglow.vercel.app/api/analytics/oneYearUsersCompare'
   );
-  
 
   return (
     <div className="text-trueGray-50 flex-col">
