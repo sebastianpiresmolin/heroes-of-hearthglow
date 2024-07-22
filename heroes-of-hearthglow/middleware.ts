@@ -1,35 +1,21 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-
-// Admittedly, I find this a bit confusing. But the idea is that this middleware
-// will check if the user is authenticated before allowing access to the API.
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
-  const isApiPath = path.startsWith('/api');
-  const isPublicPath =
-    path === '/login' || path === '/' || path === '/api/auth/login';
+
+  // Correctly define paths that are considered public
+  const isPublicPath = path === '/login' || path === '/';
+  // Get the token from the cookies
   const token = request.cookies.get('token');
 
-  if (isPublicPath) {
-    return NextResponse.next();
-  }
-
-  if (isApiPath && !token) {
-    return new NextResponse(JSON.stringify({ message: 'Unauthorized' }), {
-      status: 401,
-    });
-  }
-
+  // If trying to access a protected path without a token, redirect to the login page
   if (!isPublicPath && !token) {
     return NextResponse.redirect(new URL('/login', request.nextUrl));
   }
-
- 
-  return NextResponse.next();
 }
 
-
+// It specifies the paths for which this middleware should be executed.
 export const config = {
-  matcher: ['/login', '/dashboard', '/api/:path*'],
+  matcher: ['/login', '/dashboard'],
 };
