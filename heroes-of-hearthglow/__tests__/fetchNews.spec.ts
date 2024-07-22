@@ -1,4 +1,5 @@
 import fetchMock from 'jest-fetch-mock';
+import { fetchNews } from '../app/lib/fetchNews';
 
 // Mock the state setting functions
 const setNews = jest.fn();
@@ -6,18 +7,6 @@ const setActiveNews = jest.fn();
 const setTotalPages = jest.fn();
 
 const itemsPerPage = 8;
-
-const fetchNews = async (page: number) => {
-  try {
-    const response = await fetch(`/api/news/allnews?page=${page}`);
-    const { news, totalCount } = await response.json();
-    setNews(news);
-    setActiveNews(news.length > 0 ? news[0] : null);
-    setTotalPages(Math.ceil(totalCount / itemsPerPage));
-  } catch (error) {
-    console.error('Failed to fetch news:', error);
-  }
-};
 
 describe('fetchNews', () => {
   beforeEach(() => {
@@ -33,7 +22,7 @@ describe('fetchNews', () => {
       JSON.stringify({ news: mockNews, totalCount: mockTotalCount })
     );
 
-    await fetchNews(1);
+    await fetchNews(1, setNews, setActiveNews, setTotalPages, itemsPerPage);
 
     expect(fetchMock).toHaveBeenCalledWith('/api/news/allnews?page=1');
     expect(setNews).toHaveBeenCalledWith(mockNews);
@@ -51,7 +40,7 @@ describe('fetchNews', () => {
       JSON.stringify({ news: mockNews, totalCount: mockTotalCount })
     );
 
-    await fetchNews(1);
+    await fetchNews(1, setNews, setActiveNews, setTotalPages, itemsPerPage);
 
     expect(fetchMock).toHaveBeenCalledWith('/api/news/allnews?page=1');
     expect(setNews).toHaveBeenCalledWith(mockNews);
@@ -66,7 +55,7 @@ describe('fetchNews', () => {
 
     fetchMock.mockRejectOnce(new Error('Failed to fetch'));
 
-    await fetchNews(1);
+    await fetchNews(1, setNews, setActiveNews, setTotalPages, itemsPerPage);
 
     expect(fetchMock).toHaveBeenCalledWith('/api/news/allnews?page=1');
     expect(consoleErrorMock).toHaveBeenCalledWith(
