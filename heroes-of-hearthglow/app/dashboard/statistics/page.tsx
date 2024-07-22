@@ -66,42 +66,7 @@ export default async function AnalyticsPage() {
   const oneYearDataCompare = await fetchAnalyticsData(
     'https://heroes-of-hearthglow.vercel.app/api/analytics/oneYearUsersCompare'
   );
-  /*const oneDayData = await fetchAnalyticsData(
-    'http://localhost:3000/api/analytics/oneDaysUsers'
-  );
-  const oneDayDataCompare = await fetchAnalyticsData(
-    'http://localhost:3000/api/analytics/oneDaysUsersCompare'
-  );
-  const oneWeekData = await fetchAnalyticsData(
-    'http://localhost:3000/api/analytics/oneWeekUsers'
-  );
-  const oneWeekDataCompare = await fetchAnalyticsData(
-    'http://localhost:3000/api/analytics/oneWeekUsersCompare'
-  );
-  const oneMonthData = await fetchAnalyticsData(
-    'http://localhost:3000/api/analytics/oneMonthUsers'
-  );
-  const oneMonthDataCompare = await fetchAnalyticsData(
-    'http://localhost:3000/api/analytics/oneMonthUsersCompare'
-  );
-  const threeMonthData = await fetchAnalyticsData(
-    'http://localhost:3000/api/analytics/threeMonthUsers'
-  );
-  const threeMonthDataCompare = await fetchAnalyticsData(
-    'http://localhost:3000/api/analytics/threeMonthUsersCompare'
-  );
-  const sixMonthData = await fetchAnalyticsData(
-    'http://localhost:3000/api/analytics/sixMonthUsers'
-  );
-  const sixMonthDataCompare = await fetchAnalyticsData(
-    'http://localhost:3000/api/analytics/sixMonthUsersCompare'
-  );
-  const oneYearData = await fetchAnalyticsData(
-    'http://localhost:3000/api/analytics/oneYearUsers'
-  );
-  const oneYearDataCompare = await fetchAnalyticsData(
-    'http://localhost:3000/api/analytics/oneYearUsersCompare'
-  );*/
+  
 
   return (
     <div className="text-trueGray-50 flex-col">
