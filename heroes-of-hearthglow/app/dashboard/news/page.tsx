@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { fetchNews } from '@/app/lib/fetchNews';
 import Link from 'next/link';
 import {
   PencilIcon,
@@ -34,20 +35,8 @@ export default function DashboardNews() {
   const itemsPerPage = 8;
   const [totalPages, setTotalPages] = useState(1);
 
-  const fetchNews = async (page: number) => {
-    try {
-      const response = await fetch(`/api/news/allnews?page=${page}`);
-      const { news, totalCount } = await response.json();
-      setNews(news);
-      setActiveNews(news.length > 0 ? news[0] : null); 
-      setTotalPages(Math.ceil(totalCount / itemsPerPage));
-    } catch (error) {
-      console.error('Failed to fetch news:', error);
-    }
-  };
-
   useEffect(() => {
-    fetchNews(currentPage);
+    fetchNews(currentPage, setNews, setActiveNews, setTotalPages, itemsPerPage);
   }, [currentPage]);
 
   useEffect(() => {
@@ -75,7 +64,13 @@ export default function DashboardNews() {
         throw new Error('Failed to delete the news item');
       }
 
-      await fetchNews(currentPage);
+      await fetchNews(
+        currentPage,
+        setNews,
+        setActiveNews,
+        setTotalPages,
+        itemsPerPage
+      );
     } catch (error) {
       console.error('Error deleting news item:', error);
     } finally {
