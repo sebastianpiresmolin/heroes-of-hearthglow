@@ -1,4 +1,4 @@
-import { fetchAnalyticsData } from '../app/lib/fetchAnalyticsData';
+import { fetchAnalyticsData } from '../app/lib/data';
 
 global.fetch = jest.fn();
 

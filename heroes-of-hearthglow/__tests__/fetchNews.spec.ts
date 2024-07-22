@@ -1,5 +1,5 @@
 import fetchMock from 'jest-fetch-mock';
-import { fetchNews } from '../app/lib/fetchNews';
+import { fetchNews } from '../app/lib/data';
 
 // Mock the state setting functions
 const setNews = jest.fn();

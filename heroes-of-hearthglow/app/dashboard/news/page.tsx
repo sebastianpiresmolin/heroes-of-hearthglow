@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { fetchNews } from '@/app/lib/fetchNews';
+import { fetchNews } from '@/app/lib/data';
 import Link from 'next/link';
 import {
   PencilIcon,
