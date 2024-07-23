@@ -6,34 +6,44 @@ import AnalyticsClient from '../../ui/analyticsClient';
 export default async function AnalyticsPage() {
   // Fetch analytics data for the last 24 hours, 7 days, 30 days, 90 days, 180 days, and 365 days
   const oneDayData = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneDaysUsers'
+    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneDaysUsers',
+    process.env.TOKEN_SECRET!
   );
   const oneDayDataCompare = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneDaysUsersCompare'
+    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneDaysUsersCompare',
+    process.env.TOKEN_SECRET!
   );
   const oneWeekData = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneWeekUsers'
+    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneWeekUsers',
+    process.env.TOKEN_SECRET!
   );
   const oneWeekDataCompare = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneWeekUsersCompare'
+    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneWeekUsersCompare',
+    process.env.TOKEN_SECRET!
   );
   const oneMonthData = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneMonthUsers'
+    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneMonthUsers',
+    process.env.TOKEN_SECRET!
   );
   const oneMonthDataCompare = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneMonthUsersCompare'
+    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneMonthUsersCompare',
+    process.env.TOKEN_SECRET!
   );
   const threeMonthData = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app/api/analytics/threeMonthUsers'
+    'https://heroes-of-hearthglow.vercel.app/api/analytics/threeMonthUsers',
+    process.env.TOKEN_SECRET!
   );
   const threeMonthDataCompare = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app/api/analytics/threeMonthUsersCompare'
+    'https://heroes-of-hearthglow.vercel.app/api/analytics/threeMonthUsersCompare',
+    process.env.TOKEN_SECRET!
   );
   const sixMonthData = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app/api/analytics/sixMonthUsers'
+    'https://heroes-of-hearthglow.vercel.app/api/analytics/sixMonthUsers',
+    process.env.TOKEN_SECRET!
   );
   const sixMonthDataCompare = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app/api/analytics/sixMonthUsersCompare'
+    'https://heroes-of-hearthglow.vercel.app/api/analytics/sixMonthUsersCompare',
+    process.env.TOKEN_SECRET!
   );
   const oneYearData = await fetchAnalyticsData(
     'https://heroes-of-hearthglow.vercel.app/api/analytics/oneYearUsers'

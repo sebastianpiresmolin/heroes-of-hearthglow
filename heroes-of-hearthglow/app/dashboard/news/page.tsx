@@ -34,9 +34,10 @@ export default function DashboardNews() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
   const [totalPages, setTotalPages] = useState(1);
+  const token = process.env.TOKEN_SECRET!;
 
   useEffect(() => {
-    fetchNews(currentPage, setNews, setActiveNews, setTotalPages, itemsPerPage);
+    fetchNews(currentPage, setNews, setActiveNews, setTotalPages, itemsPerPage, token);
   }, [currentPage]);
 
   useEffect(() => {
@@ -69,7 +70,8 @@ export default function DashboardNews() {
         setNews,
         setActiveNews,
         setTotalPages,
-        itemsPerPage
+        itemsPerPage,
+        token
       );
     } catch (error) {
       console.error('Error deleting news item:', error);

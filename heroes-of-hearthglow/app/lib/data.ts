@@ -37,10 +37,15 @@ export async function getLatestNews() {
 }
 
 export async function fetchAnalyticsData(
-  url: string
+  url: string,
+  token: string
 ): Promise<GA4AnalyticsData> {
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (!res.ok) {
       console.error(`Failed to fetch data from ${url}. Status: ${res.status}`);
       throw new Error('Failed to fetch data');
