@@ -46,10 +46,12 @@ export default async function AnalyticsPage() {
     process.env.TOKEN_SECRET!
   );
   const oneYearData = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneYearUsers'
+    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneYearUsers',
+    process.env.TOKEN_SECRET!
   );
   const oneYearDataCompare = await fetchAnalyticsData(
-    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneYearUsersCompare'
+    'https://heroes-of-hearthglow.vercel.app/api/analytics/oneYearUsersCompare',
+    process.env.TOKEN_SECRET!
   );
 
   return (
