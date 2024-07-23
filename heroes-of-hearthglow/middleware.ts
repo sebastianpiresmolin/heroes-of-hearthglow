@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import jwt from 'jsonwebtoken';
+import { jwtVerify } from 'jose';
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   console.log(`Middleware executing for path: ${path}`);
 
@@ -14,6 +14,14 @@ export function middleware(request: NextRequest) {
   const token = tokenCookie ? tokenCookie.value : null;
   console.log(`Token: ${token}`);
 
+  // Ensure the TOKEN_SECRET is loaded
+  const tokenSecret = process.env.TOKEN_SECRET;
+  console.log(`Token Secret: ${tokenSecret}`);
+
+  if (!tokenSecret) {
+    throw new Error('TOKEN_SECRET is not defined in the environment variables');
+  }
+
   // If trying to access a protected path without a token, redirect to the login page
   if (!isPublicPath && !token) {
     console.log('Redirecting to login: No token');
@@ -23,9 +31,14 @@ export function middleware(request: NextRequest) {
   // If the token is present, verify it
   if (token) {
     try {
-      jwt.verify(token, process.env.TOKEN_SECRET!);
+      await jwtVerify(token, new TextEncoder().encode(tokenSecret));
+      console.log('Token verified successfully');
     } catch (error) {
-      console.log('Redirecting to login: Invalid token');
+      if (error instanceof Error) {
+        console.log('Redirecting to login: Invalid token', error.message);
+      } else {
+        console.log('Redirecting to login: Invalid token');
+      }
       // If token verification fails, redirect to login
       return NextResponse.redirect(new URL('/login', request.nextUrl));
     }
@@ -42,6 +55,6 @@ export const config = {
     '/dashboard',
     '/api/news/createNews',
     '/api/news/editNewsItem',
-    '/api/news/deleteNews',
+    '/api/news/deleteNews/:path*',
   ],
 };
