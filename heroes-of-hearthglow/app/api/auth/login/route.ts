@@ -7,16 +7,17 @@ import { corsMiddleware } from '@/corsMiddleware';
 
 export async function POST(request: NextRequest) {
   const corsHeaders = corsMiddleware(request);
-  if (!corsHeaders) {
+  if (corsHeaders instanceof NextResponse) {
+    return corsHeaders;
+  } else if (corsHeaders) {
+    if (request.method === 'OPTIONS') {
+      return new NextResponse(null, { headers: corsHeaders });
+    }
+  } else {
     return NextResponse.json(
       { error: 'CORS policy violation' },
       { status: 403 }
     );
-  }
-
-  if (request.method === 'OPTIONS') {
-    // End preflight request
-    return new NextResponse(null, { headers: corsHeaders as Headers });
   }
 
   try {
@@ -28,7 +29,7 @@ export async function POST(request: NextRequest) {
     console.log(`Attempting to find user: ${username}`);
     const user = await User.findOne({
       username: new RegExp(`^${username}$`, 'i'),
-    }); // Case-insensitive search
+    });
 
     if (!user) {
       console.log('User does not exist');
@@ -38,25 +39,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log(`User found: ${user.username}`);
-    const validPassword = await bcryptjs.compare(password, user.password); // Compare hashed password
+    const validPassword = await bcryptjs.compare(password, user.password);
     if (!validPassword) {
       console.log('Invalid password');
       return NextResponse.json({ error: 'Invalid password' }, { status: 400 });
     }
 
-    const tokenData = { id: user._id, username: user.username }; // Token payload
+    const tokenData = { id: user._id, username: user.username };
     const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {
-      expiresIn: '1d', // Token expires in 1 day
+      expiresIn: '1d',
     });
-
-    console.log('Token generated:', token);
 
     const response = NextResponse.json({
       message: 'Login successful',
       success: true,
     });
-    response.cookies.set('token', token, { httpOnly: true }); // Set token in cookie
+
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+    });
 
     return response;
   } catch (error: any) {
