@@ -58,6 +58,9 @@ export default function DashboardNews() {
     try {
       const response = await fetch(`/api/news/deleteNews/${activeNews.id}`, {
         method: 'DELETE',
+        headers: {
+          credentials: 'include',
+        },
       });
 
       if (!response.ok) {
