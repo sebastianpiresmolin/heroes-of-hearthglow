@@ -41,7 +41,7 @@ export const config = {
   matcher: [
     '/dashboard',
     '/api/news/createNews',
-    '/api/news/editNews',
+    '/api/news/editNewsItem',
     '/api/news/deleteNews',
   ],
 };

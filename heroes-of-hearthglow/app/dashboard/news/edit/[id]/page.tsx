@@ -65,6 +65,7 @@ export default function PatchNews() {
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
           body: JSON.stringify(newsItem),
         }
       );

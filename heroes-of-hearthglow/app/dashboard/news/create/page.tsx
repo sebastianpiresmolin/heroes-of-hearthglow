@@ -46,6 +46,7 @@ export default function CreateNews() {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
       body: JSON.stringify(newsItem),
     });
     router.push('/dashboard/news');
