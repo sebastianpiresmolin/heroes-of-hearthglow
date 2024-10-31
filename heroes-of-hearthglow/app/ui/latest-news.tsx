@@ -25,6 +25,7 @@ async function fetchNews(): Promise<NewsItem[]> {
 export default function LatestNews() {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [newsCard, setNewsCard] = useState<number>(0);
 
   useEffect(() => {
     const getNews = async () => {
@@ -55,22 +56,27 @@ export default function LatestNews() {
           </h1>
           <div className="relative">
             <img
-                src={news[0].image}
-                alt={news[0].title}
+                src={news[newsCard].image}
+                alt={news[newsCard].title}
                 className="w-full h-auto rounded-t-lg shadow-[inset_0px_0px_10px_10px_#black]"
             />
             <p className="absolute bottom-0 left-0 p-2 z-10 text-white">
-              {news[0].time}
+              {news[newsCard].time}
             </p>
           </div>
           <h2 className="bg-slate-300 pt-5 pb-5 font-bold text-xl text-center">
-            {news[0].title}
+            {news[newsCard].title}
           </h2>
           <p className="text-justify whitespace-pre-wrap bg-slate-300 pr-5 pl-5 pb-5 rounded-b-lg">
-            {news[0].description}
+            {news[newsCard].description}
           </p>
           <div className="flex justify-center p-5">
-            <a href="#" className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-500 bg-blue-200 p-4 md:p-6 rounded-2xl hover:scale-95">
+            <a onClick={() => setNewsCard(1)}
+               className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-500 bg-blue-200 p-4 md:p-6 rounded-2xl hover:scale-95">
+              SHOW MORE
+            </a>
+            <a onClick={() => setNewsCard(prev => prev - 1)}
+               className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-500 bg-blue-200 p-4 md:p-6 rounded-2xl hover:scale-95">
               SHOW MORE
             </a>
           </div>
