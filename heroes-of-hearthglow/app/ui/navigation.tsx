@@ -16,7 +16,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [key, setKey] = useState(0);
 
-  const menuItems = ['NEWS', 'THE TEAM', 'DISCORD'];
+  const menuItems = ['NEWS', 'TEAM', 'DISCORD'];
 
   const restartComponent = () => {
     setKey((prevKey: number) => prevKey + 1); // Step 2: Update the key
@@ -26,18 +26,18 @@ export default function Navigation() {
     <Navbar
       key={key}
       onMenuOpenChange={setIsMenuOpen}
-      className="fixed bg-transparent w-[100vw]"
+      className="fixed w-[100vw] bg-transparent no-bg-effect custom-navbar"
     >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          className="sm:hidden"
+          className="sm:hidden text-amber-400"
         />
         <NavbarItem>
           <Link
             color="foreground"
             href="#news"
-            className="hidden sm:block font-bold ml-5"
+            className="hidden sm:block font-bold ml-5 text-amber-400"
           >
             NEWS
           </Link>
@@ -48,7 +48,7 @@ export default function Navigation() {
             href="#team"
             className="hidden sm:block font-bold"
           >
-            THE TEAM
+            TEAM
           </Link>
         </NavbarItem>
         <NavbarItem>
@@ -72,35 +72,20 @@ export default function Navigation() {
           />
         </Link>
       </NavbarContent>
-      <NavbarMenu>
+      <NavbarMenu
+        className="custom-navbar bg-black bg-opacity-60 max-h-fit max-w-[40vw] pb-2 rounded-r-lg">
         {menuItems.map((item) => (
           <NavbarMenuItem key={`${item}`}>
             <Link
               color="foreground"
               href={`/#${item.toLowerCase()}`}
-              className="sm:hidden font-bold scroll-smooth"
+              className="sm:hidden font-bold text-amber-400 scroll-smooth"
               onClick={restartComponent} // Restart the component on click
             >
               {item}
             </Link>
           </NavbarMenuItem>
         ))}
-        <Link href="#">
-          <Image
-            width={512}
-            height={155}
-            src="/steam_logo.png"
-            alt="Sign Up"
-            style={{
-              borderRadius: '10px',
-              width: '260px',
-              height: '80px',
-              margin: 'auto',
-              position: 'relative',
-              marginTop: '40px',
-            }}
-          />
-        </Link>
       </NavbarMenu>
     </Navbar>
   );

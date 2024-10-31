@@ -14,10 +14,8 @@ async function fetchNews(): Promise<NewsItem[]> {
   try {
     const response = await axios.get('/api/news/fivelatestnews');
     const newsData = response.data;
-    console.log('Fetched news data:', newsData); // Log fetched news data
-    return newsData; // Return news data directly without mapping
+    return newsData;
   } catch (error) {
-    console.error('Error fetching news:', error);
     return [];
   }
 }
@@ -30,15 +28,12 @@ export default function LatestNews() {
   useEffect(() => {
     const getNews = async () => {
       const fetchedNews = await fetchNews();
-      console.log('Setting fetched news:', fetchedNews); // Log news before setting state
       setNews(fetchedNews);
-      setIsLoading(false); // Set loading to false once data is fetched
+      setIsLoading(false);
     };
 
     getNews();
   }, []);
-
-  console.log('Current news state:', news); // Log current news state
 
   if (isLoading) {
     return <p>Loading...</p>;
