@@ -46,7 +46,7 @@ export default function Navigation() {
           <Link
             color="foreground"
             href="#team"
-            className="hidden sm:block font-bold"
+            className="hidden sm:block font-bold text-amber-400"
           >
             TEAM
           </Link>
@@ -55,7 +55,7 @@ export default function Navigation() {
           <Link
             color="foreground"
             href="#"
-            className="hidden sm:block font-bold"
+            className="hidden sm:block font-bold text-amber-400"
           >
             DISCORD
           </Link>
