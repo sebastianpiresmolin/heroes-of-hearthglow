@@ -20,7 +20,7 @@ export const News: Model<InferSchemaType<typeof NewsSchema>> =
 export const User: Model<InferSchemaType<typeof UserSchema>> =
   mongoose.models.User || mongoose.model('User', UserSchema);
 
-export async function getLatestNews() {
+export async function getTenLatestNews() {
   // Check if already connected (readyState 1)
   if (mongoose.connection.readyState !== 1) {
     try {
@@ -32,8 +32,7 @@ export async function getLatestNews() {
     }
   }
 
-  // Proceed with the query
-  return News.find().sort({ id: -1 }).limit(1);
+  return News.find().sort({ id: -1 }).limit(10);
 }
 
 export async function fetchAnalyticsData(
