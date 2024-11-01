@@ -73,7 +73,7 @@ export default function Navigation() {
         </Link>
       </NavbarContent>
       <NavbarMenu
-        className="custom-navbar bg-black bg-opacity-60 max-h-fit max-w-[40vw] pb-2 rounded-r-lg">
+        className="custom-navbar bg-black bg-opacity-80">
         {menuItems.map((item) => (
           <NavbarMenuItem key={`${item}`}>
             <Link
@@ -86,6 +86,15 @@ export default function Navigation() {
             </Link>
           </NavbarMenuItem>
         ))}
+        <Link>
+          <Image
+              width={68}
+              height={68}
+              alt="link to steam store"
+              src="/steam_logo.png"
+              className="w-[200px] m-auto mt-20 rounded-lg "
+          />
+        </Link>
       </NavbarMenu>
     </Navbar>
   );
