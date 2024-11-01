@@ -16,7 +16,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [key, setKey] = useState(0);
 
-  const menuItems = ['NEWS', 'TEAM', 'DISCORD'];
+  const menuItems = ['NEWS', 'TEAM'];
 
   const restartComponent = () => {
     setKey((prevKey: number) => prevKey + 1); // Step 2: Update the key
@@ -73,26 +73,38 @@ export default function Navigation() {
         </Link>
       </NavbarContent>
       <NavbarMenu
-        className="custom-navbar bg-black bg-opacity-80">
+        className="custom-navbar bg-black bg-opacity-80 flex items-center ">
         {menuItems.map((item) => (
-          <NavbarMenuItem key={`${item}`}>
+          <NavbarMenuItem key={`${item}`}
+          className="flex items-center justify-center mt-3">
             <Link
               color="foreground"
               href={`/#${item.toLowerCase()}`}
-              className="sm:hidden font-bold text-amber-400 scroll-smooth"
+              className="sm:hidden font-bold justify-center text-amber-400 scroll-smooth w-[200px] h-[60px] bg-stone-900 border-2 border-black amber-shadow rounded-md"
               onClick={restartComponent} // Restart the component on click
             >
               {item}
             </Link>
           </NavbarMenuItem>
         ))}
-        <Link>
+        <Link
+        className="amber-shadow mt-12">
           <Image
-              width={68}
-              height={68}
+              width={200}
+              height={63}
               alt="link to steam store"
               src="/steam_logo.png"
-              className="w-[200px] m-auto mt-20 rounded-lg "
+              className="w-[200px] m-auto rounded-md border-2 border-black "
+          />
+        </Link>
+        <Link
+            className="amber-shadow mt-3 w-[200px] h-[63px] rounded-md border-2 border-black items-center justify-center bg-blue-700 ">
+          <Image
+              width={200}
+              height={63}
+              alt="link to steam store"
+              src="/discordMobileMenu.svg"
+              className="w-[150px] h-[63px]"
           />
         </Link>
       </NavbarMenu>
