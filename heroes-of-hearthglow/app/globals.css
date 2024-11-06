@@ -24,6 +24,26 @@ html {
   }
 }
 
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slide-in 0.7s ease forwards;
+}
+
+.hidden-slide-in {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
 [class^="number-slide"],
 [class*=" number-slide"] {
   display: flex;
