@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function Hero() {
   return (
     <section>
-      <div className="flex justify-center bg-black ">
+      <div className="flex justify-center bg-black outer-shadow ">
         <div
           className=" max-w-[1050px] flex-col h-fit bg-cover bg-center justify-center w-[90vw] inset-shadow"
           style={{
