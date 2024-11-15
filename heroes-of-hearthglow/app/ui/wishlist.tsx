@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Wishlist() {
   return (
-    <div className="w-full h-[100px] bg-gray-400 flex justify-center items-center">
+    <div className="w-full h-full bg-black flex justify-center items-center pb-14 pt-14">
       <div className="flex justify-center items-center max-w-[1050px] overflow-hidden">
         <Image
           width={244}
@@ -12,16 +12,18 @@ export default function Wishlist() {
           alt="section divider"
           className="w-[20vw] h-1/3 opacity-30"
         />
-        <h2 className="font-bold sm:text-xl md:text-2xl  m-5 text-nowrap">
-          Wishlist Now
-        </h2>
-        <Image
-          className="w-1/4 m-5 rounded-lg max-w-[165px]"
-          width={512}
-          height={155}
-          src="/steam_logo.png"
-          alt="Steam store link"
-        />
+        <div className="flex flex-col justify-center items-center">
+          <h2 className="font-bold text-3xl text-amber-400 m-1 text-nowrap">
+            Wishlist Now
+          </h2>
+          <Image
+            className="w-2/3 m-0 rounded-lg max-w-[1000px]"
+            width={512}
+            height={155}
+            src="/steam_logo.png"
+            alt="Steam store link"
+          />
+        </div>
         <Image
           width={244}
           height={5}
