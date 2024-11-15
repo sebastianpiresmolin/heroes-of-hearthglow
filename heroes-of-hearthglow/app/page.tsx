@@ -3,7 +3,6 @@ import Navigation from './ui/navigation';
 import Wishlist from './ui/wishlist';
 import Hero from './ui/hero';
 import LatestNews from './ui/latest-news';
-import Carousel from './ui/carousel';
 import Team from './ui/team';
 import Footer from './ui/footer';
 
@@ -13,7 +12,6 @@ export default function Home() {
       <Navigation />
       <Landing />
       <Hero />
-      <Carousel />
       <Wishlist />
       <LatestNews />
       <Wishlist />

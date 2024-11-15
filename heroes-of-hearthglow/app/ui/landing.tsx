@@ -4,9 +4,7 @@ import { SlArrowDownCircle } from 'react-icons/sl';
 export default function Landing() {
   return (
     <section className="relative w-full h-screen">
-      <div
-        className="relative w-full h-full inset-shadow"
-      >
+      <div className="relative flex-end flex-col justify-center w-full h-full inset-shadow">
         <Image
           src="/landing.jpg"
           width={2400}
@@ -30,7 +28,7 @@ export default function Landing() {
           >
             WATCH TRAILER
           </a>
-          <div className="w-10 h-10 mt-32 mb-14 ">
+          <div className="w-10 h-10 mt-20 mb-14 ">
             <SlArrowDownCircle className="w-full h-full text-amber-400 bg-black bg-opacity-50 rounded-full" />
           </div>
         </div>
