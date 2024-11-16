@@ -1,51 +1,42 @@
 import { fetchAnalyticsData } from '../app/lib/data';
+import fetchMock from 'jest-fetch-mock';
 
-global.fetch = jest.fn();
+fetchMock.enableMocks();
 
 describe('fetchAnalyticsData', () => {
-  const mockUrl = 'https://example.com/api/data';
-  const mockData = {
-    rows: [
-      {
-        dimensionValues: [{ value: 'dimension1' }],
-        metricValues: [{ value: 'metric1' }],
-      },
-    ],
-  };
-
-  beforeEach(() => {
-    (global.fetch as jest.Mock).mockClear();
-  });
-
-  it('should fetch and return data when the response is ok', async () => {
-    (global.fetch as jest.Mock).mockResolvedValueOnce({
-      ok: true,
-      json: async () => mockData,
+    beforeEach(() => {
+        fetchMock.resetMocks();
     });
 
-    const data = await fetchAnalyticsData(mockUrl);
+    it('should fetch data successfully', async () => {
+        const mockData = { activeUsers: 100 };
+        fetchMock.mockResponseOnce(JSON.stringify(mockData));
 
-    expect(data).toEqual(mockData);
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl);
-  });
+        const params = { startDate: '2023-01-01', endDate: '2023-01-31', metrics: 'activeUsers' };
+        const data = await fetchAnalyticsData(params);
 
-  it('should throw an error when the response is not ok', async () => {
-    (global.fetch as jest.Mock).mockResolvedValueOnce({
-      ok: false,
-      status: 404,
+        expect(data).toEqual(mockData);
+        expect(fetchMock).toHaveBeenCalledWith(expect.stringContaining('/api/analytics?startDate=2023-01-01&endDate=2023-01-31&metrics=activeUsers'));
     });
 
-    await expect(fetchAnalyticsData(mockUrl)).rejects.toThrow(
-      'Failed to fetch data'
-    );
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl);
-  });
+    it('should throw an error for a failed fetch', async () => {
+        fetchMock.mockResponseOnce(JSON.stringify({ message: 'Not Found' }), { status: 404 });
 
-  it('should throw an error when fetch fails', async () => {
-    const mockError = new Error('Network error');
-    (global.fetch as jest.Mock).mockRejectedValueOnce(mockError);
+        const params = { startDate: '2023-01-01', endDate: '2023-01-31', metrics: 'activeUsers' };
 
-    await expect(fetchAnalyticsData(mockUrl)).rejects.toThrow('Network error');
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl);
-  });
+        await expect(fetchAnalyticsData(params)).rejects.toThrow('HTTP error! status: 404');
+    });
+
+    it('should construct the correct URL', async () => {
+        const mockData = { activeUsers: 100 };
+        fetchMock.mockResponseOnce(JSON.stringify(mockData));
+
+        const params = { startDate: '2023-01-01', endDate: '2023-01-31', metrics: 'activeUsers' };
+        await fetchAnalyticsData(params);
+
+        const expectedURL = new URL(`/api/analytics?startDate=${params.startDate}&endDate=${params.endDate}&metrics=${params.metrics}`, "http://localhost:3000").toString();
+
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+        expect(fetchMock).toHaveBeenLastCalledWith(expectedURL);
+    });
 });

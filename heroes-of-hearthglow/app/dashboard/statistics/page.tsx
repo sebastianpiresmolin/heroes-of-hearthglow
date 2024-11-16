@@ -1,4 +1,3 @@
-// AnalyticsPage.tsx
 import { Suspense } from 'react';
 import { fetchAnalyticsData } from '../../lib/data';
 import AnalyticsClient from '../../ui/analyticsClient';
