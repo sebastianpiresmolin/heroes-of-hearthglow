@@ -12,12 +12,12 @@ import {
 export default function Team() {
   return (
     <section
-      className="flex flex-col items-center justify-center bg-gray-400 w-full"
+      className="flex flex-col items-center justify-center bg-black w-full"
       id="team"
     >
-      <h1 className="text-center lg:mb-5 p-5 text-4xl font-bold ">THE TEAM</h1>
+      <h1 className="text-center lg:mb-5 p-5 text-4xl lg:text-6xl text-cyan-50 font-bold ">THE TEAM</h1>
       <div
-        className="max-w-[1050px] flex flex-col h-fit min-h-[500px] bg-cover bg-center items-center justify-center w-[90vw] shadow-[inset_0px_0px_10px_10px_#9ca3af]"
+        className="max-w-[1050px] flex flex-col h-fit min-h-[500px] bg-cover bg-center items-center justify-center w-[90vw] shadow-[inset_0px_0px_10px_10px_black]"
         style={{
           backgroundImage: "url('/office.jpg')",
         }}
@@ -30,7 +30,7 @@ export default function Team() {
           className="rounded-full w-1/3 mt-20"
         />
         <div className="flex justify-start w-full max-w[1050px]">
-          <Card className="max-w-[500px] bg-slate-300 m-10 mt-20">
+          <Card className="max-w-[500px] bg-gray-950 m-10 mt-20">
             <CardHeader className="flex gap-3">
               <Image
                 alt="nextui logo"
@@ -40,25 +40,25 @@ export default function Team() {
                 width={80}
               />
               <div className="flex flex-col">
-                <p className="text-md">Alan Ballan</p>
-                <p className="text-small text-default-500">
+                <p className="text-md text-cyan-50">Alan Ballan</p>
+                <p className="text-small text-gray-300">
                   Programmer & Master procrastinator
                 </p>
               </div>
             </CardHeader>
             <Divider />
             <CardBody>
-              <p>Some text about yourself and the work you do at ramen cat.</p>
+              <p className="text-gray-300">Some text about yourself and the work you do at ramen cat.</p>
             </CardBody>
             <Divider />
           </Card>
         </div>
         <div className="flex justify-end w-full max-w-[1050px]">
-          <Card className="max-w-[500px] bg-slate-300 m-10 mt-0">
+          <Card className="max-w-[500px] bg-gray-950 m-10 mt-0">
             <CardHeader className="flex justify-end gap-3">
               <div className="flex flex-col">
-                <p className="text-md text-right">Alan Ballan</p>
-                <p className="text-small  text-default-500 text-right">
+                <p className="text-md text-right text-cyan-50">Alan Ballan</p>
+                <p className="text-small  text-gray-300 text-right">
                   Programmer & Master procrastinator
                 </p>
               </div>
@@ -72,13 +72,13 @@ export default function Team() {
             </CardHeader>
             <Divider />
             <CardBody>
-              <p>Some text about yourself and the work you do at ramen cat.</p>
+              <p className="text-gray-300">Some text about yourself and the work you do at ramen cat.</p>
             </CardBody>
             <Divider />
           </Card>
         </div>
       </div>
-      <p className="text-justify whitespace-pre-wrap bg-slate-300 bg-opacity-35 rounded-md p-14 rounded-b-lg max-w-[1050px]">
+      <p className="text-justify whitespace-pre-wrap bg-black text-gray-300 bg-opacity-35 rounded-md p-14 rounded-b-lg max-w-[1050px]">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed
         arcu nec velit congue ultrices non nec massa. Donec eu cursus leo.
         Phasellus ornare consequat euismod. Vestibulum elementum venenatis purus
