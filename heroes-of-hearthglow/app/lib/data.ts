@@ -20,20 +20,16 @@ export const News: Model<InferSchemaType<typeof NewsSchema>> =
 export const User: Model<InferSchemaType<typeof UserSchema>> =
   mongoose.models.User || mongoose.model('User', UserSchema);
 
-export async function fetchAnalyticsData(
-  url: string
-): Promise<GA4AnalyticsData> {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) {
-      console.error(`Failed to fetch data from ${url}. Status: ${res.status}`);
-      throw new Error('Failed to fetch data');
-    }
-    return res.json();
-  } catch (error) {
-    console.error(`Error fetching data from ${url}:`, error);
-    throw error;
-  }
-}
+export async function fetchAnalyticsData(params: { startDate: string, endDate: string, metrics: string }) {
+  const { startDate, endDate, metrics } = params;
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const url = new URL(`/api/analytics?startDate=${startDate}&endDate=${endDate}&metrics=${metrics}`, baseUrl);
+
+  const response = await fetch(url.toString());
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  return await response.json();
+}
 
