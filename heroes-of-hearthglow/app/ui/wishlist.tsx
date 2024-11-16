@@ -12,8 +12,8 @@ export default function Wishlist() {
           alt="section divider"
           className="w-[20vw] h-1/3 opacity-30"
         />
-        <div className="flex flex-col justify-center items-center">
-          <h2 className="font-bold text-3xl text-amber-400 m-1 text-nowrap">
+        <div className="flex flex-col justify-center items-center mt-20 mb-20">
+          <h2 className="font-bold text-3xl text-amber-400 m-1 text-nowrap mb-4">
             Wishlist Now
           </h2>
           <Image

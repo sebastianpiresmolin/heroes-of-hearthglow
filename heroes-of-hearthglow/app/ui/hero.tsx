@@ -114,7 +114,7 @@ const Hero = () => {
               Fight bad dudes at badass places, like the place shown above probably. Fight bad dudes at badass places, like the place shown above probably. Fight bad dudes at badass places, like the place shown above probably. Fight bad dudes at badass places, like the place shown above probably. Fight bad dudes at badass places, like the place shown above probably.
             </p>
           </div>
-          <div className="flex flex-col justify-end items-end mt-8 md:flex-row-reverse md:items-center md:mt-16 mb-10">
+          <div className="flex flex-col justify-end items-end mt-8 md:flex-row-reverse md:items-center md:mt-16">
             <Image
                 src="/landing.jpg"
                 width={2400}
