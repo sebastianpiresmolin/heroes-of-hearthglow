@@ -43,15 +43,38 @@ const GoogleAnalytics = () => {
         </>
       )}
       <CookieConsent
-        onAccept={handleAccept}
-        onDecline={handleDecline}
-        cookieName="analytics"
-        expires={365}
-        enableDeclineButton
-        buttonText="Accept"
-        declineButtonText="Decline"
+          onAccept={handleAccept}
+          onDecline={handleDecline}
+          cookieName="analytics"
+          expires={365}
+          enableDeclineButton
+          buttonText="Accept"
+          declineButtonText="Decline"
+          style={{
+            background: 'rgba(0, 0, 0, 0.5)', // svagt transparent svart bakgrund
+            fontSize: '12px',
+            boxShadow: 'inset 0px -25px 5px 0px rgba(0, 0, 0, 0.75)', // skuggning med transparens
+          }}
+          buttonStyle={{
+            background: 'white',
+            color: 'black',
+            fontSize: '12px',
+            borderRadius: '5px',
+            border: 'none',
+            padding: '10px 20px',
+            cursor: 'pointer',
+          }}
+          declineButtonStyle={{
+            background: 'none',
+            color: 'white',
+            fontSize: '12px',
+            borderRadius: '5px',
+            border: '2px solid white',
+            padding: '10px 20px',
+            cursor: 'pointer',
+          }}
       >
-        This website uses cookies to enhance the user experience.
+        This website uses cookies to enhance the user experience and only gathers non-personal traffic statistics
       </CookieConsent>
     </>
   );
