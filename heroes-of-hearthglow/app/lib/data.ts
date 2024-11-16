@@ -24,7 +24,7 @@ export async function fetchAnalyticsData(params: { startDate: string, endDate: s
   const { startDate, endDate, metrics } = params;
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-  const url = new URL(`/api/analytics?startDate=${startDate}&endDate=${endDate}&metrics=${metrics}`, baseUrl);
+  const url = new URL(`${baseUrl}/api/analytics?startDate=${startDate}&endDate=${endDate}&metrics=${metrics}`);
 
   const response = await fetch(url.toString());
   if (!response.ok) {
