@@ -1,93 +1,17 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 import rateLimit from 'express-rate-limit';
 
-
-const limiter = rateLimit({
+const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 200,
-  message: 'Too many requests from this IP, please try again after 15 minutes.',
+  max: 100,
+  message: 'Too many requests, please try again later.',
   keyGenerator: (req: any) => req.ip,
+  handler: (req, res) => {
+    console.log(`Rate limit reached for IP: ${req.ip}`);
+    res.status(429).send('Too many requests, please try again later.');
+  },
 });
-
-function createMockReqRes(request: NextRequest) {
-  const headers = new Map(request.headers.entries());
-
-  return {
-    req: {
-      headers: Object.fromEntries(request.headers),
-      ip: request.ip ?? headers.get('x-forwarded-for')?.split(',').shift() ?? '127.0.0.1',
-      method: request.method,
-      path: request.nextUrl.pathname,
-      protocol: request.nextUrl.protocol,
-      query: Object.fromEntries(request.nextUrl.searchParams),
-      url: request.url,
-    },
-    res: () => {
-      const responseHeaders = new Map<string, string>();
-      let statusCode = 200;
-      let body = '';
-      let finished = false;
-
-      return {
-        status(code: number) {
-          statusCode = code;
-          return this;
-        },
-        setHeader(key: string, value: string) {
-          responseHeaders.set(key, value);
-        },
-        getHeader(key: string) {
-          return responseHeaders.get(key);
-        },
-        send(payload: string) {
-          body = payload;
-          finished = true;
-        },
-        end(payload: string) {
-          body = payload;
-          finished = true;
-        },
-        get finished() {
-          return finished;
-        },
-        get statusCode() {
-          return statusCode;
-        },
-        get body() {
-          return body;
-        },
-        get _headers() {
-          return responseHeaders;
-        }
-      };
-    }
-  };
-}
-
-async function applyRateLimit(request: NextRequest) {
-  const { req, res } = createMockReqRes(request);
-  const response = res();
-
-  return new Promise<void>((resolve, reject) => {
-    limiter(req as any, response as any, (err: unknown) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    });
-  }).then(() => {
-    if (response.finished) {
-      const responseHeaders = new Headers(Object.fromEntries(response._headers));
-      return new NextResponse(response.body, {
-        status: response.statusCode,
-        headers: responseHeaders,
-      });
-    }
-  });
-}
 
 async function verifyToken(request: NextRequest): Promise<boolean> {
   const tokenCookie = request.cookies.get('token');
@@ -117,22 +41,79 @@ export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   console.log(`Middleware executing for path: ${path}`);
 
-  // Apply rate limiting to all paths
-  try {
-    const rateLimitResponse = await applyRateLimit(request);
-    if (rateLimitResponse) {
-      return rateLimitResponse;
-    }
-  } catch (error) {
-    return new NextResponse((error as Error).message, { status: 429 });
+  // mock-req res for express-rate-limit
+  const mockReq = {
+    headers: Object.fromEntries(request.headers),
+    ip: request.ip ?? '127.0.0.1',
+    method: request.method,
+    path: request.nextUrl.pathname,
+    protocol: request.nextUrl.protocol,
+    query: Object.fromEntries(request.nextUrl.searchParams),
+    url: request.url,
+  };
+
+  const mockRes = {
+    status(code: number) {
+      mockRes.statusCode = code;
+      return mockRes;
+    },
+    setHeader(key: string, value: string) {
+      mockRes.headers.set(key, value);
+    },
+    getHeader(key: string) {
+      return mockRes.headers.get(key);
+    },
+    json(payload: Record<string, any>) {
+      mockRes.body = JSON.stringify(payload);
+      mockRes.finished = true;
+    },
+    send(payload: string) {
+      mockRes.body = payload;
+      mockRes.finished = true;
+    },
+    end(payload: string) {
+      mockRes.body = payload;
+      mockRes.finished = true;
+    },
+    statusCode: 200,
+    headers: new Map<string, string>(),
+    body: '',
+    finished: false,
+  };
+
+  console.log('Applying rate limiting for IP:', mockReq.ip);
+  let rateLimitExceeded = false;
+
+  await new Promise<void>((resolve, reject) => {
+    apiLimiter(mockReq as any, mockRes as any, (err: unknown) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  }).catch(() => {
+    rateLimitExceeded = true;
+  });
+
+  if (rateLimitExceeded) {
+    const responseHeaders = Object.fromEntries(mockRes.headers);
+    console.log(`Rate limit response headers: ${JSON.stringify(responseHeaders)}`);
+    return new NextResponse(mockRes.body, {
+      status: mockRes.statusCode || 429,
+      headers: {
+        'Content-Type': 'application/json',
+        ...responseHeaders,
+      },
+    });
   }
 
-  const isPublicPath = path === '/login' || path === '/';
+  const isPublicPath = ['/login', '/'].includes(path);
   const isProtectedPath = !isPublicPath && [
     '/dashboard/(.*)',
     '/api/news/createNews',
     '/api/news/editNewsItem',
-    '/api/news/deleteNews/:path*'
+    '/api/news/deleteNews/:path*',
   ].some(route => new RegExp(route).test(path));
 
   if (isProtectedPath && !(await verifyToken(request))) {
@@ -146,12 +127,12 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/dashboard/(.*)',  // Using a wildcard to match all nested paths
+    '/dashboard/(.*)',
     '/api/news/createNews',
-    '/api/news/editNewsItem',
-    '/api/news/deleteNews/:path*',
+    '/api/news/editNews',
+    '/api/news/deleteNews/(.*)',
     '/api/login',
-    '/login',  // Explicitly include the `/login` route for rate limiting
-    '/',       // Include the root for rate limiting
+    '/login',
+    '/',
   ],
 };
