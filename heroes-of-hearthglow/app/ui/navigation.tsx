@@ -122,7 +122,7 @@ export default function Navigation() {
               width={200}
               height={100}
               alt="link to steam store"
-              src="/youtube-logo-icon.webp"
+              src="/youtube-logo-mobile-menu.webp"
               className="w-[150px] h-[150px]"
           />
         </Link>
