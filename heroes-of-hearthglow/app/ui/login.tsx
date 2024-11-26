@@ -21,18 +21,15 @@ export default function Login() {
       setLoading(true);
       const response = await axios.post('/api/auth/login', user);
       setLoggedIn(true);
-      console.log('isLoggedIn', isLoggedIn);
       router.push('/dashboard/news');
     } catch (error: any) {
       setError('Invalid username or password.');
-      console.log('Login failed', error.message);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    console.log('isLoggedIn changed:', isLoggedIn);
     if (isLoggedIn) {
       router.push('/dashboard/news');
     }
