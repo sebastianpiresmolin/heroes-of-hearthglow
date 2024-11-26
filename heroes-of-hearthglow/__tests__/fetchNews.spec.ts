@@ -24,7 +24,7 @@ describe('fetchNews', () => {
 
     await fetchNews(1, setNews, setActiveNews, setTotalPages, itemsPerPage);
 
-    expect(fetchMock).toHaveBeenCalledWith('/api/news/allnews?page=1');
+    expect(fetchMock).toHaveBeenCalledWith('/api/news/allNews?page=1');
     expect(setNews).toHaveBeenCalledWith(mockNews);
     expect(setActiveNews).toHaveBeenCalledWith(mockNews[0]);
     expect(setTotalPages).toHaveBeenCalledWith(
@@ -42,7 +42,7 @@ describe('fetchNews', () => {
 
     await fetchNews(1, setNews, setActiveNews, setTotalPages, itemsPerPage);
 
-    expect(fetchMock).toHaveBeenCalledWith('/api/news/allnews?page=1');
+    expect(fetchMock).toHaveBeenCalledWith('/api/news/allNews?page=1');
     expect(setNews).toHaveBeenCalledWith(mockNews);
     expect(setActiveNews).toHaveBeenCalledWith(null);
     expect(setTotalPages).toHaveBeenCalledWith(
@@ -57,7 +57,7 @@ describe('fetchNews', () => {
 
     await fetchNews(1, setNews, setActiveNews, setTotalPages, itemsPerPage);
 
-    expect(fetchMock).toHaveBeenCalledWith('/api/news/allnews?page=1');
+    expect(fetchMock).toHaveBeenCalledWith('/api/news/allNews?page=1');
     expect(consoleErrorMock).toHaveBeenCalledWith(
       'Failed to fetch news:',
       expect.any(Error)
