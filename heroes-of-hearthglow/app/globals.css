@@ -133,3 +133,12 @@ html {
 .arrow--disabled {
   fill: rgba(255, 255, 255, 0.5);
 }
+
+.scroll-hidden::-webkit-scrollbar {
+  display: none; /* Dölj scrollbar för Chrome, Safari och Edge */
+}
+
+.scroll-hidden {
+  -ms-overflow-style: none; /* Dölj scrollbar för Internet Explorer 10+ */
+  scrollbar-width: none; /* Dölj scrollbar för Firefox */
+}
