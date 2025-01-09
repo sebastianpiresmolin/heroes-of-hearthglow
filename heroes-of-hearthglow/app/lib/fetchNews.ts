@@ -6,7 +6,7 @@ export const fetchNews = async (
   itemsPerPage: number
 ) => {
   try {
-    const response = await fetch(`/api/news/allnews?page=${page}`);
+    const response = await fetch(`/api/news/allNews?page=${page}`);
     const { news, totalCount } = await response.json();
     setNews(news);
     setActiveNews(news.length > 0 ? news[0] : null);
