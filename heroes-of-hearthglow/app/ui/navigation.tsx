@@ -35,20 +35,17 @@ export default function Navigation() {
         />
         <NavbarItem>
           <Link
-            color="foreground"
-            href="#news"
-            className="hidden sm:block font-bold text-amber-400"
-          >
-            NEWS
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link
-            color="foreground"
-            href="#team"
-            className="hidden sm:block font-bold text-amber-400"
-          >
-            TEAM
+              href="/"
+              className="amber-shadow hidden sm:block">
+            <div className="flex items-center justify-center w-[200px] h-[63px] m-auto rounded-md border-2 border-black">
+              <Image
+                  width={200}
+                  height={63}
+                  alt="link to steam store"
+                  src="/HearthglowOnly.png"
+                  className="rounded-md"
+              />
+            </div>
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -83,19 +80,19 @@ export default function Navigation() {
         </NavbarContent>
       <NavbarMenu
         className="custom-navbar bg-black bg-opacity-80 flex items-center outer-shadow ">
-        {menuItems.map((item) => (
-          <NavbarMenuItem key={`${item}`}
-          className="flex items-center justify-center mt-3">
-            <Link
-              color="foreground"
-              href={`/#${item.toLowerCase()}`}
-              className="sm:hidden font-bold justify-center text-amber-400 scroll-smooth w-[200px] h-[60px] bg-stone-900 border-2 border-black amber-shadow rounded-md"
-              onClick={restartComponent} // Restart the component on click
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        <Link
+            href="/"
+            className="amber-shadow">
+          <div className="flex items-center justify-center w-[200px] h-[63px] m-auto rounded-md border-2 border-black">
+            <Image
+                width={200}
+                height={63}
+                alt="link to steam store"
+                src="/HearthglowOnly.png"
+                className="rounded-md"
+            />
+          </div>
+        </Link>
         <Link
         className="amber-shadow mt-12">
           <Image
