@@ -59,22 +59,20 @@ const Hero = () => {
               ref={h2Ref}
               className="text-center mb-10 mr-5 ml-5 text-4xl font-semibold text-slate-100 drop-shadow-[0_1px_2px_rgba(0,0,0,1)] text-shadow-xl pt-20 hidden-slide-in"
           >
-             Can You Defeat the Evil of Hearthglow?
+            Let Your Spirit Burn Brighter Than Any Evil
           </h2>
           <p
               ref={pRef}
-              className="max-w-[500px] text-center lg:text-justify md:text-md w-[80vw] leading-9 tracking-wide font-normal text-slate-300 drop-shadow-[0_1px_2px_rgba(0,0,0,1)] text-shadow-xl hidden-slide-in"
+              className="max-w-[500px] text-justify lg:text-justify md:text-md w-[80vw] leading-9 tracking-wide font-normal text-slate-300 drop-shadow-[0_1px_2px_rgba(0,0,0,1)] text-shadow-xl hidden-slide-in"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            sed arcu nec velit congue ultrices non nec massa. Donec eu cursus leo.
-            Phasellus ornare consequat euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            sed arcu nec velit congue ultrices non nec massa. Donec eu cursus leo.
+            Heroes of Hearthglow is a 2D action RPG roguelike where your fate is forged by fire and tempered through
+            endless rebirth. Each time you fall, you rise again—stronger, more determined, and ever closer to banishing
+            the undead forces of Necropolis.
             <br/><br/>
-            Phasellus ornare consequat euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            sed arcu nec velit congue ultrices non nec massa. Donec eu cursus leo.
-            Phasellus ornare consequat euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            sed arcu nec velit congue ultrices non nec massa. Donec eu cursus leo.
-            Phasellus ornare consequat euismod.
+            Embrace your unbreakable will as you battle through a myriad of environments—from crumbling catacombs to
+            scorching deserts—wielding a vast array of weapons and abilities that adapt to every run. With each rebirth,
+            discover fresh strategies, assemble powerful gear, and prove that not even death can extinguish the light
+            within.
           </p>
         </div>
         <div className="flex-col max-w-[1000px] w-full h-fit z-1">
