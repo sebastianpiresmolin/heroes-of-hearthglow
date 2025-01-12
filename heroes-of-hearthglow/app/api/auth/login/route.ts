@@ -23,7 +23,13 @@ export async function POST(request: NextRequest) {
   try {
     await connect();
     console.log('Database connected successfully');
+
     const reqBody = await request.json();
+
+    if (!reqBody || !reqBody.username || !reqBody.password) {
+      throw new Error('Invalid request body - username or password missing');
+    }
+
     const { username, password } = reqBody;
 
     console.log(`Attempting to find user: ${username}`);
