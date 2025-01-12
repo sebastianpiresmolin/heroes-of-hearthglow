@@ -37,13 +37,10 @@ describe('GET /api/logout', () => {
             },
         } as unknown as NextRequest;
 
-        // Kör GET-metoden
         const response: any = await GET(mockRequest);
 
-        // Kontrollera att statuskoden är 500
         expect(response.status).toBe(500);
 
-        // Kontrollera att rätt svar returneras
         const responseBody = await response.json();
         expect(responseBody).toEqual({
             error: 'Unexpected Error',
