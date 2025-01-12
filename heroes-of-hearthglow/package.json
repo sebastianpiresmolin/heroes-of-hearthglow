@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "cypress:open": "cypress open"
   },
   "jest": {
     "preset": "ts-jest",
@@ -19,7 +20,10 @@
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/$1"
     },
-    "moduleDirectories": ["node_modules", "app"]
+    "moduleDirectories": [
+      "node_modules",
+      "app"
+    ]
   },
   "dependencies": {
     "@google-analytics/data": "^4.7.0",
@@ -46,6 +50,7 @@
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
+    "cypress": "^13.17.0",
     "dotenv": "^16.4.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",

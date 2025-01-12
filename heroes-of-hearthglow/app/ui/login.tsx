@@ -58,19 +58,24 @@ export default function Login() {
          font-regular h-fit w-fit m-auto p-10 shadow-lg shadow-black outline outline-1 outline-zinc-700
          outline-solid rounded-lg bg-neutral-900 "
         >
-          <h2>Please use a desktop screen to access the dashboard</h2>
+          <h2 id="mobileBlocker">Please use a desktop screen to access the dashboard</h2>
         </div>
       </div>
       <div className="lg:flex justify-center max-w-screen items-center min-h-screen hidden">
         <div
+            id="loginModal"
           className="flex flex-col items-center justify-center py-2 bg-neutral-900 w-[375px] h-[500px]
         shadow-lg shadow-black outline outline-1 outline-zinc-700 rounded-lg 2xl:w-[500px] 2xl:h-[700px] text-trueGray-50
         "
         >
-          <h1 className="text-4xl text-trueGray-50 p-3">
+          <h1
+              id="loginTitle"
+              className="text-4xl text-trueGray-50 p-3">
             {loading ? 'Processing' : 'Welcome'}
           </h1>
-          <p className="text-sm text-zinc-400 text-center pb-3">
+          <p
+              id="loginDescription"
+              className="text-sm text-zinc-400 text-center pb-3">
             Enter your username and password below to login
           </p>
           <input
@@ -94,8 +99,11 @@ export default function Login() {
             placeholder="password"
             required
           />
-          <p className="text-red-500">{error}</p>
+          <p
+              id="loginError"
+              className="text-red-500">{error}</p>
           <button
+              id="loginButton"
             className="bg-trueGray-50 hover:bg-trueGray-200 text-black antialiased py-2 px-4 rounded-md 
             m-1 w-[200px] 2xl:w-[300px] 2xl:h-[50px] mt-2 "
             onClick={onLogin}
