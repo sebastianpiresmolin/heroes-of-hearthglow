@@ -22,13 +22,12 @@ export default function Landing() {
             style={{ zIndex: 0, animationDelay: '1s' }}
           />
           <div className="relative flex-col justify-end w-full h-full flex items-center">
-            <a
-              href="https://www.youtube.com"
-              className="text-xl md:text-xl lg:text-2xl font-bold text-amber-400  bg-stone-900 p-4 rounded-3xl"
+            <h2
+              className="text-xl md:text-xl lg:text-2xl font-bold text-amber-400 bg-black bg-opacity-50 rounded-full px-5 py-2"
             >
-              WATCH TRAILER
-            </a>
-            <div className="w-10 h-10 mb-5 mt-5">
+              Scroll to explore
+            </h2>
+            <div className="w-10 h-10 mb-16 mt-5">
               <SlArrowDownCircle className="w-full h-full text-amber-400 bg-black bg-opacity-50 rounded-full" />
             </div>
           </div>
