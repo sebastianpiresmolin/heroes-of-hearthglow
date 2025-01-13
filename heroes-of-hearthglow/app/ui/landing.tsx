@@ -6,6 +6,7 @@ export default function Landing() {
     <section className="relative w-full bg-black h-screen">
       <div className="relative flex-end flex-col justify-center items-center w-full h-full">
         <Image
+            id="landing"
           src="/landing.png"
           width={2400}
           height={1642}
@@ -14,6 +15,7 @@ export default function Landing() {
         />
         <div className="relative flex-col w-full flex items-center z-10 h-full mb-20">
           <Image
+              id="titleAndLogo"
             src="/TitleAndLogo.png"
             width={1000}
             height={472}
@@ -23,12 +25,14 @@ export default function Landing() {
           />
           <div className="relative flex-col justify-end w-full h-full flex items-center">
             <h2
+                id="scrollToExplore"
               className="text-xl md:text-xl lg:text-2xl font-bold text-amber-400 bg-black bg-opacity-50 rounded-full px-5 py-2"
             >
               Scroll to explore
             </h2>
             <div className="w-10 h-10 mb-16 mt-5">
-              <SlArrowDownCircle className="w-full h-full text-amber-400 bg-black bg-opacity-50 rounded-full" />
+              <SlArrowDownCircle id="arrowDownLanding"
+                  className="w-full h-full text-amber-400 bg-black bg-opacity-50 rounded-full" />
             </div>
           </div>
         </div>
