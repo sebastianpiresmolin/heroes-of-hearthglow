@@ -35,7 +35,7 @@ export default function Navigation() {
               <Image
                   width={200}
                   height={63}
-                  alt="link to steam store"
+                  alt="Link to the start of the website"
                   src="/HearthglowOnly.png"
                   className="rounded-md hover:scale-95"
               />
@@ -50,7 +50,7 @@ export default function Navigation() {
               width={512}
               height={155}
               src="/discord.png"
-              alt="Steam store link"
+              alt="Link to Discord server for Hearthglow"
             />
           </Link>
           <Link href="#">
@@ -59,7 +59,7 @@ export default function Navigation() {
                 width={512}
                 height={155}
                 src="/youtube-logo.svg"
-                alt="Steam store link"
+                alt="Link to YouTube channel for Hearthglow"
             />
           </Link>
           <Link href="#">
@@ -68,7 +68,7 @@ export default function Navigation() {
                 width={512}
                 height={155}
                 src="/steam_logo.png"
-                alt="Steam store link"
+                alt="Link to Steam store for Hearthglow"
             />
           </Link>
         </NavbarContent>
@@ -81,7 +81,7 @@ export default function Navigation() {
             <Image
                 width={200}
                 height={63}
-                alt="link to steam store"
+                alt="Link to the start of the website"
                 src="/HearthglowOnly.png"
                 className="rounded-md"
             />
@@ -92,7 +92,7 @@ export default function Navigation() {
           <Image
               width={200}
               height={63}
-              alt="link to steam store"
+              alt="Link to steam store for Hearthglow"
               src="/steam_logo.png"
               className="w-[200px] m-auto rounded-md border-2 border-black "
           />
@@ -102,7 +102,7 @@ export default function Navigation() {
           <Image
               width={200}
               height={63}
-              alt="link to steam store"
+              alt="Link to discord server for Hearthglow"
               src="/discordMobileMenu.svg"
               className="w-[150px] h-[63px]"
           />
@@ -112,14 +112,14 @@ export default function Navigation() {
           <Image
               width={200}
               height={100}
-              alt="link to steam store"
+              alt="Link to youtube channel for Hearthglow"
               src="/youtube-logo-mobile-menu.webp"
               className="w-[150px] h-[150px]"
           />
         </Link>
         <div className="absolute bottom-0 flex-col justify-center w-full h-fit pt-20 pb-14">
           <Image
-              alt="studio logo"
+              alt="Ramen Cat Studios Logo"
               height={80}
               className="rounded-full m-auto"
               src="/studio-logo.png"
