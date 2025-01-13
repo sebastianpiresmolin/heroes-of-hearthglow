@@ -9,7 +9,7 @@ export default function Landing() {
           src="/landing.png"
           width={2400}
           height={1642}
-          alt="Landing page"
+          alt="Pixel art portraying three heroes gathered around a bonfire while the dark forest around them is encroaching."
           className="absolute top-[35vh] lg:top-[25vh] left-1/2 transform -translate-x-1/2 xl:-translate-x-[52%] w-fit max-w-[450px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[800px] object-cover p-5 opacity-0 animate-fadeIn"
         />
         <div className="relative flex-col w-full flex items-center z-10 h-full mb-20">
@@ -17,7 +17,7 @@ export default function Landing() {
             src="/TitleAndLogo.png"
             width={1000}
             height={472}
-            alt="Landing page logo"
+            alt="A Flaming sword logo with the text 'Heroes of HearthGlow' in amber orange with wings."
             className="max-w-[350px] md:max-w-[400px] lg:max-w-[400px] xl:max-w-[500px] mt-32 lg:mt-24 opacity-0 animate-slideInTop custom1500"
             style={{ zIndex: 0, animationDelay: '1s' }}
           />
