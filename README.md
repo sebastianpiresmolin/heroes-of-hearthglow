@@ -15,7 +15,10 @@ Then run:
 
 `npm run build`
 `npm run start`
-`npm run cypress:open`
 
-Now the Cypress client window should be opened for you. Press the E2E option and select the spec you want to run.
+and finally:
+
+`npx cypress run --spec "cypress/e2e/**/*"`
+
+
 
