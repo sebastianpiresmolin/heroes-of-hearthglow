@@ -7,14 +7,17 @@ describe('Navbar', () => {
             .find('#home-link-navbar')
             .should('exist')
             .and('be.visible')
+
             .get('#navbar')
             .find('#discord-link-navbar')
             .should('exist')
             .and('be.visible')
+
             .get('#navbar')
             .find('#youtube-link-navbar')
             .should('exist')
             .and('be.visible')
+
             .get('#navbar')
             .find('#steam-link-navbar')
             .should('exist')
