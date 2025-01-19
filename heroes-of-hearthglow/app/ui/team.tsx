@@ -15,7 +15,7 @@ export default function Team() {
       className="flex flex-col items-center justify-center bg-black w-full"
       id="team"
     >
-      <h1 className="text-center lg:mb-5 p-5 text-4xl lg:text-6xl text-cyan-50 font-bold ">THE TEAM</h1>
+      <h1 className="text-center lg:mb-5 p-5 text-4xl lg:text-6xl text-amber-400 font-bold ">THE TEAM</h1>
       <div
         className="max-w-[1050px] flex flex-col h-fit min-h-[500px] bg-cover bg-center items-center justify-center w-[90vw] shadow-[inset_0px_0px_10px_10px_black]"
         style={{
