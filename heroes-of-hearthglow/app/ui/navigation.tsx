@@ -122,14 +122,14 @@ export default function Navigation() {
               alt="studio logo"
               height={80}
               className="rounded-full m-auto"
-              src="/studio-logo.png"
+              src="/TempuraTabby.png"
               width={80}
           />
           <h2 className="text-2xl font-bold text-slate-400 opacity-80 text-center p-5">
-            Ramen Cat Studios
+            Tempura Tabby
           </h2>
           <p className="text-center text-slate-400 opacity-80">
-            © 2024 Ramen Cat Studios.<br/>All rights reserved.<br/>ramen@cat.email
+            © 2025 Tempura Tabby.<br/>All rights reserved.<br/>tempuratabby@gmail.com
           </p>
           <p className="text-center text-slate-400 opacity-80 mt-2">
             Website by <a href="https://github.com/sebastianpiresmolin" className="text-cyan-50 hover:text-cyan-400">Sebastian
