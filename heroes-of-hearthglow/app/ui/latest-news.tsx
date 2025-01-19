@@ -102,7 +102,7 @@ export default function LatestNews() {
         <section className="flex justify-center bg-black overflow-hidden">
             <div className="max-w-[1050px] flex-col h-fit justify-center w-[90vw] relative overflow-hidden">
                 <h1
-                    className="text-center lg:mb-5 p-5 text-4xl lg:text-6xl lg:mb-10 font-bold text-cyan-50"
+                    className="text-center lg:mb-5 p-5 text-4xl lg:text-6xl lg:mb-10 font-bold text-amber-400"
                     id="news"
                 >
                     NEWS

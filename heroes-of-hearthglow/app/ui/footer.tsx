@@ -63,7 +63,7 @@ export default function Footer() {
             Tempura Tabby
           </h2>
           <p className="text-center text-slate-400 opacity-70">
-            © 2024 Tempura Tabby.<br />All rights reserved.<br/>tempuratabby@gmail.com
+            © 2025 Tempura Tabby.<br />All rights reserved.<br/>tempuratabby@gmail.com
           </p>
           <p className="text-center text-slate-400 opacity-70 mt-2">
             Website by <a href="https://github.com/sebastianpiresmolin" className="text-cyan-50 hover:text-cyan-400">Sebastian Molin</a>
